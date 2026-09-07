@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автосалон "Премиум Моторс"</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">АвтоПремиум</h1>
+            <nav class="nav">
+                <a href="#catalog">Каталог</a>
+                <a href="#services">Услуги</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Новые автомобили в наличии и под заказ</h2>
+            <p>Выгодные условия кредитования и программа Trade-in</p>
+            <a href="#catalog" class="btn">Смотреть каталог</a>
+        </div>
+    </section>
+
+    <section id="catalog" class="catalog container">
+        <h2>Наш автопарк</h2>
+        <div class="car-grid" id="carGrid"></div>
+    </section>
+
+    <section class="booking-section container">
+        <h2>Записаться на тест-драйв</h2>
+        <form id="testDriveForm" class="form">
+            <input type="text" id="clientName" placeholder="Ваше имя" required>
+            <input type="tel" id="clientPhone" placeholder="Номер телефона" required>
+            <button type="submit" class="btn">Отправить заявку</button>
+        </form>
+        <p id="formMessage" class="success-message"></p>
+    </section>
+
+    <footer id="contacts" class="footer">
+        <div class="container">
+            <p>© 2026 АвтоПремиум. Все права защищены.</p>
+            <p>Телефон: +7 (705) 852-48-37 | Адрес: ул. Байтурсынова, 35/4</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
