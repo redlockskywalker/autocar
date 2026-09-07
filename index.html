@@ -8,8 +8,9 @@
 </head>
 <body>
 
+    <!-- Шапка сайта -->
     <header class="header">
-        <div class="container">
+        <div class="container header-container">
             <h1 class="logo">АвтоПремиум</h1>
             <nav class="nav">
                 <a href="#catalog">Каталог</a>
@@ -19,19 +20,63 @@
         </div>
     </header>
 
+    <!-- Главный баннер -->
     <section class="hero">
-        <div class="container">
+        <div class="container hero-content">
             <h2>Новые автомобили в наличии и под заказ</h2>
             <p>Выгодные условия кредитования и программа Trade-in</p>
             <a href="#catalog" class="btn">Смотреть каталог</a>
         </div>
     </section>
 
-    <section id="catalog" class="catalog container">
-        <h2>Наш автопарк</h2>
-        <div class="car-grid" id="carGrid"></div>
+    <!-- Интерактивный каталог (Слайдер автомобилей) -->
+    <section id="catalog" class="catalog-section">
+        <div class="container">
+            <h2 class="section-title">Каталог автомобилей</h2>
+            
+            <div class="slider-container">
+                <!-- Кнопка назад -->
+                <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
+
+                <!-- Карточка автомобиля со скрытой анимацией появления -->
+                <div class="car-slide-card" id="carCard">
+                    <div class="car-image-wrapper">
+                        <img id="carImage" src="" alt="Автомобиль">
+                    </div>
+                    <div class="car-details">
+                        <h3 id="carName">Название модели</h3>
+                        <p id="carDescription" class="car-desc">Описание модели</p>
+                        
+                        <!-- Характеристики -->
+                        <div class="car-specs">
+                            <div class="spec-item">
+                                <span>Мощность:</span>
+                                <strong id="specPower">-</strong>
+                            </div>
+                            <div class="spec-item">
+                                <span>Разгон 0-100:</span>
+                                <strong id="specTime">-</strong>
+                            </div>
+                            <div class="spec-item">
+                                <span>Привод:</span>
+                                <strong id="specDrive">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="car-price-row">
+                            <span id="carPrice" class="car-price">0 ₽</span>
+                            <button class="btn" onclick="bookCurrentCar()">Забронировать</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопка вперед -->
+                <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
+            </div>
+        </div>
     </section>
 
+    <!-- Секция заявки -->
     <section class="booking-section container">
         <h2>Записаться на тест-драйв</h2>
         <form id="testDriveForm" class="form">
@@ -42,10 +87,11 @@
         <p id="formMessage" class="success-message"></p>
     </section>
 
+    <!-- Подвал -->
     <footer id="contacts" class="footer">
         <div class="container">
             <p>© 2026 АвтоПремиум. Все права защищены.</p>
-            <p>Телефон: +7 (705) 852-48-37 | Адрес: ул. Байтурсынова, 35/4</p>
+            <p>Телефон: +7 (999) 000-00-00 | Адрес: ул. Автомобильная, 10</p>
         </div>
     </footer>
 
