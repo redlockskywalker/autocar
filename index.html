@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Автосалон "Премиум Моторс"</title>
+    <title>Автосалон "АвтоПремиум"</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,32 +13,33 @@
         <div class="container header-container">
             <h1 class="logo">АвтоПремиум</h1>
             <nav class="nav">
+                <a href="#hero">Главная</a>
                 <a href="#catalog">Каталог</a>
-                <a href="#services">Услуги</a>
-                <a href="#contacts">Контакты</a>
+                <a href="#" id="openContactsBtn">Контакты</a>
             </nav>
         </div>
     </header>
 
-    <!-- Главный баннер -->
-    <section class="hero">
+    <!-- Главный баннер (Hero экран) -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h2>Новые автомобили в наличии и под заказ</h2>
-            <p>Выгодные условия кредитования и программа Trade-in</p>
-            <a href="#catalog" class="btn">Смотреть каталог</a>
+            <h2 class="hero-title">Новые автомобили в наличии и под заказ</h2>
+            <p class="hero-subtitle">Выгодные условия кредитования и программа Trade-in</p>
+            <button class="btn hero-btn" id="openCatalogBtn">Смотреть каталог</button>
         </div>
     </section>
 
     <!-- Интерактивный каталог (Слайдер автомобилей) -->
     <section id="catalog" class="catalog-section">
         <div class="container">
-            <h2 class="section-title">Каталог автомобилей</h2>
+            <h2 class="section-title">Каталог автомобилей в наличии</h2>
             
             <div class="slider-container">
                 <!-- Кнопка назад -->
-                <button class="slider-btn prev-btn" id="prevBtn">&#10094;</button>
+                <button class="slider-btn prev-btn" id="prevBtn" aria-label="Предыдущий автомобиль">&#10094;</button>
 
-                <!-- Карточка автомобиля со скрытой анимацией появления -->
+                <!-- Карточка автомобиля -->
                 <div class="car-slide-card" id="carCard">
                     <div class="car-image-wrapper">
                         <img id="carImage" src="" alt="Автомобиль">
@@ -65,36 +66,80 @@
 
                         <div class="car-price-row">
                             <span id="carPrice" class="car-price">0 ₽</span>
-                            <button class="btn" onclick="bookCurrentCar()">Забронировать</button>
+                            <button class="btn" id="bookBtn">Забронировать</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Кнопка вперед -->
-                <button class="slider-btn next-btn" id="nextBtn">&#10095;</button>
+                <button class="slider-btn next-btn" id="nextBtn" aria-label="Следующий автомобиль">&#10095;</button>
             </div>
         </div>
     </section>
 
-    <!-- Секция заявки -->
-    <section class="booking-section container">
-        <h2>Записаться на тест-драйв</h2>
-        <form id="testDriveForm" class="form">
-            <input type="text" id="clientName" placeholder="Ваше имя" required>
-            <input type="tel" id="clientPhone" placeholder="Номер телефона" required>
-            <button type="submit" class="btn">Отправить заявку</button>
-        </form>
-        <p id="formMessage" class="success-message"></p>
-    </section>
-
     <!-- Подвал -->
-    <footer id="contacts" class="footer">
+    <footer class="footer">
         <div class="container">
             <p>© 2026 АвтоПремиум. Все права защищены.</p>
-            <p>Телефон: +7 (999) 000-00-00 | Адрес: ул. Автомобильная, 10</p>
         </div>
     </footer>
 
+    <!-- Модальное окно бронирования -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <h3 class="modal-title">Оформление заявки</h3>
+            <p class="selected-car-info" id="selectedCarName"></p>
+
+            <form id="bookingForm" class="booking-form">
+                <div class="form-group">
+                    <label for="clientName">Ваше имя</label>
+                    <input type="text" id="clientName" placeholder="Иван Иванов" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientPhone">Номер телефона</label>
+                    <input type="tel" id="clientPhone" placeholder="+7 (999) 000-00-00" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="testDriveCheckbox">
+                        <span class="custom-checkbox"></span>
+                        Записаться на тест-драйв
+                    </label>
+                </div>
+                <button type="submit" class="btn submit-btn">Отправить заявку</button>
+            </form>
+            <p id="formMessage" class="form-message"></p>
+        </div>
+    </div>
+
+    <!-- Модальное окно "Контакты" -->
+    <div class="modal-overlay" id="contactsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeContactsBtn">&times;</button>
+            <h3 class="modal-title">Наши контакты</h3>
+            <div class="contacts-info">
+                <p><strong>📍 Адрес:</strong> г. Шымкент, ул. Автомобильная, 10</p>
+                <p><strong>📞 Телефон:</strong> +7 (999) 000-00-00</p>
+                <p><strong>✉️ E-mail:</strong> info@autopremium.kz</p>
+                <p><strong>🕒 График работы:</strong> Ежедневно с 09:00 до 20:00</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Панель менеджера на сайте -->
+    <div class="modal-overlay" id="managerModal">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="closeManagerBtn">&times;</button>
+            <h3 class="modal-title">Панель управления менеджера</h3>
+            <div id="managerTableContainer" class="manager-table-wrapper">
+                <!-- Сюда динамически подгружается таблица -->
+            </div>
+            <button class="btn btn-secondary" id="clearBookingsBtn">Очистить все заявки</button>
+        </div>
+    </div>
+
+    <!-- Подключение скрипта -->
     <script src="script.js"></script>
 </body>
 </html>
