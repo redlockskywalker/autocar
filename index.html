@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- Шапка сайта -->
     <header class="header">
         <div class="container header-container">
             <h1 class="logo">АвтоПремиум</h1>
@@ -16,11 +15,11 @@
                 <a href="#hero">Главная</a>
                 <a href="#catalog">Каталог</a>
                 <a href="#" id="openContactsBtn">Контакты</a>
+                <a href="#managers">Менеджеры</a>
             </nav>
         </div>
     </header>
 
-    <!-- Главный баннер (Hero экран) -->
     <section id="hero" class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
@@ -30,16 +29,13 @@
         </div>
     </section>
 
-    <!-- Интерактивный каталог (Слайдер автомобилей) -->
     <section id="catalog" class="catalog-section">
         <div class="container">
             <h2 class="section-title">Каталог автомобилей в наличии</h2>
             
             <div class="slider-container">
-                <!-- Кнопка назад -->
                 <button class="slider-btn prev-btn" id="prevBtn" aria-label="Предыдущий автомобиль">&#10094;</button>
 
-                <!-- Карточка автомобиля -->
                 <div class="car-slide-card" id="carCard">
                     <div class="car-image-wrapper">
                         <img id="carImage" src="" alt="Автомобиль">
@@ -48,7 +44,6 @@
                         <h3 id="carName">Название модели</h3>
                         <p id="carDescription" class="car-desc">Описание модели</p>
                         
-                        <!-- Характеристики -->
                         <div class="car-specs">
                             <div class="spec-item">
                                 <span>Мощность:</span>
@@ -65,26 +60,85 @@
                         </div>
 
                         <div class="car-price-row">
-                            <span id="carPrice" class="car-price">0 ₽</span>
+                            <span id="carPrice" class="car-price">0 ₸</span>
                             <button class="btn" id="bookBtn">Забронировать</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Кнопка вперед -->
                 <button class="slider-btn next-btn" id="nextBtn" aria-label="Следующий автомобиль">&#10095;</button>
             </div>
         </div>
     </section>
 
-    <!-- Подвал -->
+    <section id="managers" class="catalog-section visible">
+        <div class="container">
+            <h2 class="section-title">Наши менеджеры</h2>
+            <div class="managers-grid">
+                <div class="manager-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Александр Иванов" class="manager-img">
+                    <div class="manager-info">
+                        <h3>Александр Иванов</h3>
+                        <p class="manager-role">Старший менеджер по продажам</p>
+                        <p><strong>📞 Телефон:</strong> +7 (999) 111-22-33</p>
+                        <p><strong>✉️ E-mail:</strong> a.ivanov@autopremium.kz</p>
+                    </div>
+                </div>
+                
+                <div class="manager-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Елена Смирнова" class="manager-img">
+                    <div class="manager-info">
+                        <h3>Елена Смирнова</h3>
+                        <p class="manager-role">Специалист по Trade-in</p>
+                        <p><strong>📞 Телефон:</strong> +7 (999) 444-55-66</p>
+                        <p><strong>✉️ E-mail:</strong> e.smirnova@autopremium.kz</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <p>© 2026 АвтоПремиум. Все права защищены.</p>
         </div>
     </footer>
 
-    <!-- Модальное окно бронирования -->
+    <button id="tradeInFab" class="trade-in-fab">
+        <span></span> Trade-In Оценка
+    </button>
+
+    <div class="chat-panel" id="tradeInChat">
+        <div class="chat-header">
+            <h3 style="font-size: 1.1rem;">ИИ-Оценка Trade-In</h3>
+            <button class="modal-close" id="closeChatBtn" style="position:static; font-size:1.5rem; color:#fff;">&times;</button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="msg bot">Здравствуйте! Я ИИ-ассистент АвтоПремиум. Отправьте фото вашего автомобиля, и я мгновенно рассчитаю его предварительную стоимость.</div>
+        </div>
+        
+        <div class="chat-input-area" id="chatInputArea">
+            <label for="carPhotoInput" class="btn btn-secondary upload-btn" style="width: 100%; margin: 0; text-align: center;">📷 Выбрать фото авто</label>
+            <input type="file" id="carPhotoInput" accept="image/*" style="display: none;">
+        </div>
+        
+        <form id="tradeInForm" class="trade-in-form hidden">
+            <input type="text" id="tiName" placeholder="Ваше имя" required>
+            <input type="tel" id="tiPhone" placeholder="+7 (999) 000-00-00" required>
+            <button type="submit" class="btn" style="width: 100%; padding: 10px;">Оставить заявку</button>
+        </form>
+    </div>
+
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content" style="text-align: center;">
+            <button class="modal-close" id="closeImageBtn">&times;</button>
+            <h3 class="modal-title">Данные Trade-In</h3>
+            <img id="managerViewImage" src="" alt="Trade In Car" style="max-width: 100%; max-height: 300px; border-radius: 10px; margin: 15px 0; object-fit: cover;">
+            <p id="managerViewPrice" style="font-size: 1.4rem; color: #ff4757; font-weight: bold;"></p>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="bookingModal">
         <div class="modal-content">
             <button class="modal-close" id="closeModalBtn">&times;</button>
@@ -113,7 +167,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно "Контакты" -->
     <div class="modal-overlay" id="contactsModal">
         <div class="modal-content">
             <button class="modal-close" id="closeContactsBtn">&times;</button>
@@ -127,19 +180,16 @@
         </div>
     </div>
 
-    <!-- Панель менеджера на сайте -->
     <div class="modal-overlay" id="managerModal">
         <div class="modal-content modal-large">
             <button class="modal-close" id="closeManagerBtn">&times;</button>
             <h3 class="modal-title">Панель управления менеджера</h3>
             <div id="managerTableContainer" class="manager-table-wrapper">
-                <!-- Сюда динамически подгружается таблица -->
             </div>
             <button class="btn btn-secondary" id="clearBookingsBtn">Очистить все заявки</button>
         </div>
     </div>
 
-    <!-- Подключение скрипта -->
     <script src="script.js"></script>
 </body>
 </html>
