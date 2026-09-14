@@ -356,3 +356,127 @@ document.querySelector('a[href="#managers"]').addEventListener('click', function
     e.preventDefault();
     document.getElementById('managers').scrollIntoView({ behavior: 'smooth' });
 });
+
+// --- Логика для новых пунктов меню и модальных окон ---
+
+const promotionModal = document.getElementById('promotionModal');
+const dillerModal = document.getElementById('dillerModal');
+const ratingModal = document.getElementById('ratingModal');
+
+const openPromotionBtn = document.getElementById('openPromotionBtn');
+const openDillerBtn = document.getElementById('openDillerBtn');
+const openRatingBtn = document.getElementById('openRatingBtn');
+const openSupportBtn = document.getElementById('openSupportBtn');
+const navCatalogBtn = document.getElementById('navCatalogBtn');
+
+const closePromotionBtn = document.getElementById('closePromotionBtn');
+const closeDillerBtn = document.getElementById('closeDillerBtn');
+const closeRatingBtn = document.getElementById('closeRatingBtn');
+
+// Открытие по клику
+openPromotionBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.pushState(null, null, '#promotion');
+    promotionModal.classList.add('active');
+});
+
+openDillerBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.pushState(null, null, '#diller');
+    dillerModal.classList.add('active');
+});
+
+openRatingBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    history.pushState(null, null, '#rating');
+    ratingModal.classList.add('active');
+});
+
+// Поддержка перенаправляет к блоку менеджеров
+openSupportBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('managers').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Модельный ряд открывает каталог
+if (navCatalogBtn) {
+    navCatalogBtn.addEventListener('click', openCatalog);
+}
+
+// Закрытие окон
+closePromotionBtn.addEventListener('click', () => {
+    promotionModal.classList.remove('active');
+    history.pushState(null, null, ' ');
+});
+
+closeDillerBtn.addEventListener('click', () => {
+    dillerModal.classList.remove('active');
+    history.pushState(null, null, ' ');
+});
+
+closeRatingBtn.addEventListener('click', () => {
+    ratingModal.classList.remove('active');
+    history.pushState(null, null, ' ');
+});
+
+// Закрытие при клике на оверлей
+[promotionModal, dillerModal, ratingModal].forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            history.pushState(null, null, ' ');
+        }
+    });
+});
+
+// Обработка прямого перехода по ссылкам (#promotion, #diller, #rating)
+function handleHashChange() {
+    const hash = window.location.hash;
+    if (hash === '#promotion') promotionModal.classList.add('active');
+    if (hash === '#diller') dillerModal.classList.add('active');
+    if (hash === '#rating') ratingModal.classList.add('active');
+}
+
+window.addEventListener('load', handleHashChange);
+window.addEventListener('hashchange', handleHashChange);
+
+// Форма заявки дилера
+document.getElementById('dillerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const company = document.getElementById('dillerCompany').value.trim();
+    const city = document.getElementById('dillerCity').value.trim();
+    const name = document.getElementById('dillerName').value.trim();
+    const phone = document.getElementById('dillerPhone').value.trim();
+    const email = document.getElementById('dillerEmail').value.trim();
+    const investment = document.getElementById('dillerInvestment').value;
+
+    saveBooking({
+        type: 'diller',
+        clientName: `${name} (${company}, ${city})`,
+        clientPhone: `${phone} | ${email}`,
+        carName: `Дилерство (Инвестиции: ${investment})`,
+        carPrice: 'Партнерство'
+    });
+
+    const msg = document.getElementById('dillerMessage');
+    msg.textContent = '✅ Ваша дилерская заявка передана коммерческому отделу! Мы свяжемся с вами в течение 24 часов.';
+    msg.className = 'form-message success';
+    
+    setTimeout(() => {
+        dillerModal.classList.remove('active');
+        e.target.reset();
+        msg.textContent = '';
+    }, 2500);
+});
+
+document.querySelectorAll('.promo-apply-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const promoTitle = e.target.getAttribute('data-promo');
+        promotionModal.classList.remove('active');
+        
+        // Открываем стандартную форму бронирования, но с зафиксированной акцией
+        selectedCarName.textContent = `Выбранная акция: ${promoTitle}`;
+        bookingModal.classList.add('active');
+    });
+});

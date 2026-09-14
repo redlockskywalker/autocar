@@ -324,10 +324,12 @@ body {
 
 .modal-content {
     background: #1c1c21;
-    padding: 40px;
+    padding: 35px;
     border-radius: 16px;
     width: 90%;
     max-width: 480px;
+    max-height: 90vh; /* Не дает окну выходить за пределы экрана */
+    overflow-y: auto;  /* Добавляет красивую прокрутку при необходимости */
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 50px rgba(0,0,0,0.6);
@@ -336,7 +338,7 @@ body {
 }
 
 .modal-large {
-    max-width: 850px;
+    max-width: 800px;
 }
 
 .modal-overlay.active .modal-content {
@@ -389,6 +391,8 @@ body {
 
 .form-group input[type="text"],
 .form-group input[type="tel"],
+.form-group input[type="email"],
+.custom-select,
 .trade-in-form input[type="text"],
 .trade-in-form input[type="tel"] {
     background: #141417;
@@ -396,12 +400,17 @@ body {
     padding: 12px 15px;
     border-radius: 8px;
     color: #fff;
-    font-size: 1rem;
+    font-size: 0.95rem;
     outline: none;
+    width: 100%;
     transition: border-color 0.3s;
 }
 
-.form-group input:focus, .trade-in-form input:focus { border-color: #ff4757; }
+.form-group input:focus,
+.custom-select:focus,
+.trade-in-form input:focus {
+    border-color: #ff4757;
+}
 
 .checkbox-group {
     flex-direction: row;
@@ -686,4 +695,414 @@ body {
 
 #imageModal {
     z-index: 3000;
+}
+
+/* Стили для Акций, Дилерства и Отзывов */
+.promotions-list, .reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.promo-card, .review-card {
+    background: #141417;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.promo-card h4 {
+    color: #ff4757;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.promo-card p, .review-card p {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.diller-rules {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.diller-rules h4 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.diller-rules ul {
+    padding-left: 20px;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.diller-rules li {
+    margin-bottom: 5px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.review-header strong {
+    color: #fff;
+}
+
+.stars {
+    font-size: 0.9rem;
+}
+
+/* Улучшенные стили для Акций и Дилерства */
+.promo-card {
+    position: relative;
+    background: #1c1c21;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.promo-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 71, 87, 0.4);
+}
+
+.promo-badge {
+    display: inline-block;
+    background: rgba(255, 71, 87, 0.15);
+    color: #ff4757;
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.promo-badge-alt {
+    background: rgba(46, 213, 115, 0.15);
+    color: #2ed573;
+    border-color: rgba(46, 213, 115, 0.3);
+}
+
+.promo-content h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.promo-content p {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.promo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 12px;
+    margin-top: 10px;
+}
+
+.promo-date {
+    font-size: 0.85rem;
+    color: #ffaa00;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+/* Стили Дилерского блока */
+.diller-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.benefit-item {
+    background: #141417;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.benefit-icon {
+    font-size: 1.8rem;
+}
+
+.benefit-item strong {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.benefit-item p {
+    color: #888;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.custom-select {
+    background: #141417;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+}
+
+.custom-select focus {
+    border-color: #ff4757;
+}
+
+@media (max-width: 768px) {
+    .diller-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .booking-form > div {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Улучшенные стили для Акций и Дилерства */
+.promo-card {
+    position: relative;
+    background: #1c1c21;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.promo-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 71, 87, 0.4);
+}
+
+.promo-badge {
+    display: inline-block;
+    background: rgba(255, 71, 87, 0.15);
+    color: #ff4757;
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.promo-badge-alt {
+    background: rgba(46, 213, 115, 0.15);
+    color: #2ed573;
+    border-color: rgba(46, 213, 115, 0.3);
+}
+
+.promo-content h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.promo-content p {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.promo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 12px;
+    margin-top: 10px;
+}
+
+.promo-date {
+    font-size: 0.85rem;
+    color: #ffaa00;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+/* Стили Дилерского блока */
+.diller-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.benefit-item {
+    background: #141417;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.benefit-icon {
+    font-size: 1.8rem;
+}
+
+.benefit-item strong {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.benefit-item p {
+    color: #888;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.custom-select {
+    background: #141417;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+}
+
+.custom-select focus {
+    border-color: #ff4757;
+}
+
+@media (max-width: 768px) {
+    .diller-benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    .booking-form > div {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Кастомный темный скроллбар для всех блоков и модалок */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #141417;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2f3542;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4757;
+}
+
+/* Стили для сетки автомобилей в акции */
+.promo-cars-section {
+    background: #141417;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.promo-cars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.promo-car-item {
+    background: #1c1c21;
+    padding: 10px 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.car-tag-name {
+    color: #ddd;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.car-tag-rate {
+    color: #2ed573;
+    background: rgba(46, 213, 115, 0.15);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .promo-cars-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Кастомный темный скроллбар для списка акций */
+.promotions-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.promotions-list::-webkit-scrollbar-track {
+    background: #141417;
+    border-radius: 4px;
+}
+
+.promotions-list::-webkit-scrollbar-thumb {
+    background: #2f3542;
+    border-radius: 4px;
+}
+
+.promotions-list::-webkit-scrollbar-thumb:hover {
+    background: #ff4757;
 }

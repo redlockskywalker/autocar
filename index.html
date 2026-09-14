@@ -10,12 +10,14 @@
 
     <header class="header">
         <div class="container header-container">
-            <h1 class="logo">АвтоПремиум</h1>
+            <h1 class="logo" id="logoBtn" style="cursor: pointer;">АвтоПремиум</h1>
             <nav class="nav">
-                <a href="#hero">Главная</a>
-                <a href="#catalog">Каталог</a>
-                <a href="#" id="openContactsBtn">Контакты</a>
-                <a href="#managers">Менеджеры</a>
+                <a href="#catalog" id="navCatalogBtn">Модельный ряд</a>
+                <a href="#promotion" id="openPromotionBtn">Акции</a>
+                <a href="#rating" id="openRatingBtn">Отзывы</a>
+                <a href="#diller" id="openDillerBtn">Стать дилером</a>
+                <a href="#managers" id="openSupportBtn">Поддержка</a>
+                <a href="#" id="openContactsBtn">📍 Контакты</a>
             </nav>
         </div>
     </header>
@@ -105,7 +107,7 @@
     </footer>
 
     <button id="tradeInFab" class="trade-in-fab">
-        <span></span> Trade-In Оценка
+        <span>🚗</span> Trade-In Оценка
     </button>
 
     <div class="chat-panel" id="tradeInChat">
@@ -173,7 +175,7 @@
             <h3 class="modal-title">Наши контакты</h3>
             <div class="contacts-info">
                 <p><strong>📍 Адрес:</strong> г. Шымкент, ул. Автомобильная, 10</p>
-                <p><strong>📞 Телефон:</strong> +7 (999) 000-00-00</p>
+                <p><strong>📞 Телефон:</strong> +7 (701) 000-00-00</p>
                 <p><strong>✉️ E-mail:</strong> info@autopremium.kz</p>
                 <p><strong>🕒 График работы:</strong> Ежедневно с 09:00 до 20:00</p>
             </div>
@@ -184,9 +186,188 @@
         <div class="modal-content modal-large">
             <button class="modal-close" id="closeManagerBtn">&times;</button>
             <h3 class="modal-title">Панель управления менеджера</h3>
-            <div id="managerTableContainer" class="manager-table-wrapper">
-            </div>
+            <div id="managerTableContainer" class="manager-table-wrapper"></div>
             <button class="btn btn-secondary" id="clearBookingsBtn">Очистить все заявки</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Акции -->
+    <div class="modal-overlay" id="promotionModal">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="closePromotionBtn">&times;</button>
+            <h3 class="modal-title">🔥 Действующие акции и спецпредложения</h3>
+            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Зафиксируйте персональную выгоду до конца текущего месяца</p>
+            
+            <div class="promotions-list">
+                <!-- Акция 1: Кредит и рассрочка -->
+                <div class="promo-card">
+                    <div class="promo-badge promo-badge-alt">Финансовая программа</div>
+                    <div class="promo-content">
+                        <h4>Автокредит от 0.1% или Рассрочка 0%</h4>
+                        <p>Первоначальный взнос от 20%, одобрение по 2 документам за 15 минут без подтверждения доходов.</p>
+                        
+                        <div class="promo-cars-section">
+                            <h5 style="color: #fff; margin-bottom: 10px; font-size: 0.95rem;">🚗 Автомобили, участвующие в акции:</h5>
+                            <div class="promo-cars-grid">
+                                <div class="promo-car-item">
+                                    <span class="car-tag-name">BMW X5 xDrive</span>
+                                    <span class="car-tag-rate">от 0.1%</span>
+                                </div>
+                                <div class="promo-car-item">
+                                    <span class="car-tag-name">Audi A6 Business</span>
+                                    <span class="car-tag-rate">Рассрочка 0%</span>
+                                </div>
+                                <div class="promo-car-item">
+                                    <span class="car-tag-name">Mercedes-Benz GLC</span>
+                                    <span class="car-tag-rate">от 0.1%</span>
+                                </div>
+                                <div class="promo-car-item">
+                                    <span class="car-tag-name">Porsche Cayenne Sport</span>
+                                    <span class="car-tag-rate">от 0.1%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="promo-footer">
+                            <span class="promo-date">⚡ Лимитированное количество авто</span>
+                            <button class="btn btn-sm promo-apply-btn" data-promo="Кредит 0.1% / Рассрочка 0%">Получить расчет</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Акция 2: Подарки при покупке -->
+                <div class="promo-card">
+                    <div class="promo-badge">Премиум Пакет</div>
+                    <div class="promo-content">
+                        <h4>3 года бесплатного ТО + Комплект зимней резины</h4>
+                        <p>При покупке любого кроссовера из наличия вы бесплатно получаете пакет планового технического обслуживания на 3 года и комплект премиальных зимних шин (Nokian / Michelin).</p>
+                        <div class="promo-footer">
+                            <span class="promo-date">🎁 Подарок при оформлении</span>
+                            <button class="btn btn-sm promo-apply-btn" data-promo="3 года ТО + Комплект резины">Забрать подарок</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Акция 3: Онлайн-бронирование -->
+                <div class="promo-card">
+                    <div class="promo-badge promo-badge-alt">Онлайн выгода</div>
+                    <div class="promo-content">
+                        <h4>Скидка 500 000 ₸ за бронирование на сайте</h4>
+                        <p>Забронируйте любой автомобиль через наш сайт прямо сейчас и зафиксируйте гарантию цены с дополнительной персональной скидкой.</p>
+                        <div class="promo-footer">
+                            <span class="promo-date">⏰ При бронировании сегодня</span>
+                            <button class="btn btn-sm promo-apply-btn" data-promo="Скидка 500 000 ₸ за онлайн-бронь">Забронировать со скидкой</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно: Стать дилером -->
+    <div class="modal-overlay" id="dillerModal">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="closeDillerBtn">&times;</button>
+            <h3 class="modal-title">🤝 Дилерская программа "АвтоПремиум"</h3>
+            <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Развивайте премиальный автобизнес на выгодных партнерских условиях.</p>
+            
+            <div class="diller-benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">📈</span>
+                    <div>
+                        <strong>До 18% маржи</strong>
+                        <p>Высокий доход с продаж</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🚀</span>
+                    <div>
+                        <strong>Быстрый старт</strong>
+                        <p>Запуск за 30 дней</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📢</span>
+                    <div>
+                        <strong>Маркетинг 50/50</strong>
+                        <p>Софинансирование рекламы</p>
+                    </div>
+                </div>
+            </div>
+
+            <form id="dillerForm" class="booking-form" style="margin-top: 15px;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Название компании / ИП *</label>
+                        <input type="text" id="dillerCompany" placeholder="ТОО 'Премиум Моторс'" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Город / Регион *</label>
+                        <input type="text" id="dillerCity" placeholder="г. Астана" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ФИО контактного лица *</label>
+                        <input type="text" id="dillerName" placeholder="Бексултан Аскаров" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Телефон для связи *</label>
+                        <input type="tel" id="dillerPhone" placeholder="+7 (701) 000-00-00" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" id="dillerEmail" placeholder="partner@company.kz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Планируемые инвестиции</label>
+                        <select id="dillerInvestment" class="custom-select">
+                            <option value="До 50 млн ₸">До 50 млн ₸</option>
+                            <option value="50 - 150 млн ₸">50 - 150 млн ₸</option>
+                            <option value="Свыше 150 млн ₸">Свыше 150 млн ₸</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn submit-btn">Подать дилерскую заявку</button>
+            </form>
+            <p id="dillerMessage" class="form-message"></p>
+        </div>
+    </div>
+
+    <!-- Модальное окно: Отзывы -->
+    <div class="modal-overlay" id="ratingModal">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="closeRatingBtn">&times;</button>
+            <h3 class="modal-title">Отзывы наших клиентов</h3>
+            <div class="reviews-list">
+                <div class="review-card">
+                    <div class="review-header">
+                        <strong>Арман Н.</strong>
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>Брал BMW X5 по программе Trade-in. Оценили мой старый авто очень достойно. Менеджеры помогли быстро всё оформить за 2 часа!</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <strong>Данияр К.</strong>
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>Отличный автосалон! Покупал Audi A6, предоставили хорошую скидку и подарок при оформлении. Обслуживание на высоте.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <strong>Алина С.</strong>
+                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p>Спасибо автосалону "АвтоПремиум". Помогли подобрать авто под мой бюджет и быстро оформили рассрочку.</p>
+                </div>
+            </div>
         </div>
     </div>
 
