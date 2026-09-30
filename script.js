@@ -38,6 +38,16 @@ const cars = [
         drive: "Полный (AWD)",
         price: "115 000 000 ₸",
         image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: 5,
+        name: "Porsche Matiz",
+        description: "Кароль дорог.",
+        power: "1000 л.с.",
+        time: "0.00001 сек",
+        drive: "Полный (AWD)",
+        price: "999 999 999 ₸",
+        image: "blob:https://gemini.google.com/b868e525-b56d-423f-8abe-bce6ef76557b"
     }
 ];
 
