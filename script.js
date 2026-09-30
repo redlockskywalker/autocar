@@ -47,7 +47,7 @@ const cars = [
         time: "0.00001 сек",
         drive: "Полный (AWD)",
         price: "999 999 999 ₸",
-        image: "blob:https://gemini.google.com/b868e525-b56d-423f-8abe-bce6ef76557b"
+        image: "https://i.ibb.co.com/8gwvPdrH/Gemini-Generated-Image-u6qtmpu6qtmpu6qt.jpg"
     }
 ];
 
