@@ -230,7 +230,8 @@
 
                         <div class="promo-footer">
                             <span class="promo-date">⚡ Лимитированное количество авто</span>
-                            <button class="btn btn-sm promo-apply-btn" data-promo="Кредит 0.1% / Рассрочка 0%">Получить расчет</button>
+                            <!-- Нажатие на эту кнопку откроет мини-окно калькулятора -->
+                            <button class="btn btn-sm" id="openCreditCalcBtn">Рассчитать автокредит</button>
                         </div>
                     </div>
                 </div>
@@ -370,6 +371,64 @@
             </div>
         </div>
     </div>
+<!-- Мини-окно: Калькулятор автокредита -->
+<div class="modal-overlay" id="creditModal">
+    <div class="modal-content" style="max-width: 520px;">
+        <button class="modal-close" id="closeCreditBtn">&times;</button>
+        <h3 class="modal-title" style="color: #ff4757; text-align: center;">🚗 Расчет автокредита</h3>
+        <p style="color: #aaa; text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Выберите параметры кредитования и заполните заявку</p>
+
+        <form id="creditCalcForm" class="booking-form">
+            <div class="form-group">
+                <label>Выберите автомобиль:</label>
+                <select id="creditCarSelect" class="custom-select"></select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Первоначальный взнос (%): <strong id="downPaymentPercentVal" style="color:#ff4757;">20%</strong></label>
+                    <input type="range" id="downPaymentRange" min="10" max="80" value="20" step="5" style="width:100%; accent-color:#ff4757; cursor:pointer;">
+                    <small id="downPaymentAmountVal" style="color:#aaa;">0 ₸</small>
+                </div>
+                <div class="form-group">
+                    <label>Срок кредита:</label>
+                    <select id="creditTermSelect" class="custom-select">
+                        <option value="12">12 месяцев (1 год)</option>
+                        <option value="24">24 месяца (2 года)</option>
+                        <option value="36" selected>36 месяцев (3 года)</option>
+                        <option value="48">48 месяцев (4 года)</option>
+                        <option value="60">60 месяцев (5 лет)</option>
+                        <option value="84">84 месяца (7 лет)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Итоговые цифры расчета -->
+            <div style="background: #141417; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); margin: 5px 0 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="color:#aaa; font-size:0.9rem;">Ежемесячный платеж:</span>
+                    <strong id="monthlyPaymentVal" style="font-size: 1.3rem; color: #2ed573;">0 ₸</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #888;">
+                    <span>Сумма кредита: <span id="loanAmountVal" style="color:#fff;">0 ₸</span></span>
+                    <span>Ставка: <span style="color:#2ed573;">0.1%</span></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ваше имя</label>
+                <input type="text" id="creditClientName" placeholder="Иван Иванов" required>
+            </div>
+            <div class="form-group">
+                <label>Номер телефона</label>
+                <input type="tel" id="creditClientPhone" placeholder="+7 (701) 000-00-00" required>
+            </div>
+
+            <button type="submit" class="btn submit-btn" style="margin-top: 10px;">Отправить заявку на кредит</button>
+        </form>
+        <p id="creditMessage" class="form-message"></p>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>

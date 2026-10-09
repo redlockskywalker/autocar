@@ -142,13 +142,22 @@ function renderManagerTable() {
                     <td><button class="btn btn-secondary" style="padding: 6px 12px; margin: 0; font-size: 0.85rem;" onclick="viewTradeIn(${b.id})">Смотреть фото</button></td>
                 </tr>
             `;
+        } else if (b.type === 'credit') {
+            html += `
+                <tr>
+                    <td><span style="color:#70a1ff; font-weight:bold;">АвтоКредит</span></td>
+                    <td>${b.clientName}<br><small style="color:#aaa;">${b.clientPhone}</small></td>
+                    <td><strong>${b.carName}</strong> (${b.creditTerm || 36} мес., Взнос: ${b.downPayment || '20%'})<br><small style="color:#2ed573;">Платеж: ${b.monthlyPayment || ''}</small></td>
+                    <td><a href="tel:${b.clientPhone}" class="btn" style="padding: 6px 12px; margin: 0; font-size: 0.85rem; text-decoration: none; display: inline-block;">📞 Позвонить</a></td>
+                </tr>
+            `;
         } else {
             html += `
                 <tr>
                     <td><span style="color:#2ed573; font-weight:bold;">Покупка</span></td>
                     <td>${b.clientName}<br><small style="color:#aaa;">${b.clientPhone}</small></td>
                     <td>${b.carName} (Тест-драйв: ${b.testDrive ? 'Да' : 'Нет'})</td>
-                    <td>-</td>
+                    <td><a href="tel:${b.clientPhone}" class="btn btn-secondary" style="padding: 6px 12px; margin: 0; font-size: 0.85rem; text-decoration: none; display: inline-block;">📞 Позвонить</a></td>
                 </tr>
             `;
         }
@@ -490,3 +499,107 @@ document.querySelectorAll('.promo-apply-btn').forEach(btn => {
         bookingModal.classList.add('active');
     });
 });
+
+// --- Логика модального окна Автокредита ---
+const creditModal = document.getElementById('creditModal');
+const openCreditCalcBtn = document.getElementById('openCreditCalcBtn');
+const closeCreditBtn = document.getElementById('closeCreditBtn');
+
+const creditCarSelect = document.getElementById('creditCarSelect');
+const downPaymentRange = document.getElementById('downPaymentRange');
+const downPaymentPercentVal = document.getElementById('downPaymentPercentVal');
+const downPaymentAmountVal = document.getElementById('downPaymentAmountVal');
+const creditTermSelect = document.getElementById('creditTermSelect');
+const monthlyPaymentVal = document.getElementById('monthlyPaymentVal');
+const loanAmountVal = document.getElementById('loanAmountVal');
+const creditCalcForm = document.getElementById('creditCalcForm');
+const creditMessage = document.getElementById('creditMessage');
+
+function initCreditModal() {
+    if (!creditModal || !openCreditCalcBtn) return;
+
+    // Заполнение списка авто
+    creditCarSelect.innerHTML = cars.map(car => `<option value="${car.id}">${car.name} — ${car.price}</option>`).join('');
+
+    // Функция расчета кредита
+    function calculateCredit() {
+        const selectedCarId = parseInt(creditCarSelect.value, 10);
+        const car = cars.find(c => c.id === selectedCarId) || cars[0];
+
+        const priceNum = parseInt(car.price.replace(/\D/g, ''), 10);
+        const downPercent = parseInt(downPaymentRange.value, 10);
+        downPaymentPercentVal.textContent = `${downPercent}%`;
+
+        const downAmount = Math.round((priceNum * downPercent) / 100);
+        downPaymentAmountVal.textContent = downAmount.toLocaleString('ru-RU') + ' ₸';
+
+        const loanAmount = priceNum - downAmount;
+        loanAmountVal.textContent = loanAmount.toLocaleString('ru-RU') + ' ₸';
+
+        const months = parseInt(creditTermSelect.value, 10);
+        const annualRate = 0.001; // 0.1%
+        const monthlyRate = annualRate / 12;
+
+        let monthlyPayment = 0;
+        if (monthlyRate > 0) {
+            monthlyPayment = Math.round((loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
+        } else {
+            monthlyPayment = Math.round(loanAmount / months);
+        }
+
+        monthlyPaymentVal.textContent = monthlyPayment.toLocaleString('ru-RU') + ' ₸ / мес.';
+    }
+
+    // Слушатели событий изменения значений
+    creditCarSelect.addEventListener('change', calculateCredit);
+    downPaymentRange.addEventListener('input', calculateCredit);
+    creditTermSelect.addEventListener('change', calculateCredit);
+
+    // Открытие окна
+    openCreditCalcBtn.addEventListener('click', () => {
+        document.getElementById('promotionModal').classList.remove('active'); // Закрываем акции
+        creditModal.classList.add('active'); // Открываем автокредит
+        calculateCredit();
+    });
+
+    // Закрытие окна
+    closeCreditBtn.addEventListener('click', () => {
+        creditModal.classList.remove('active');
+    });
+
+    creditModal.addEventListener('click', (e) => {
+        if (e.target === creditModal) creditModal.classList.remove('active');
+    });
+
+    // Отправка формы заявки
+    creditCalcForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedCar = cars.find(c => c.id === parseInt(creditCarSelect.value, 10));
+        const name = document.getElementById('creditClientName').value.trim();
+        const phone = document.getElementById('creditClientPhone').value.trim();
+
+        if (!name || !phone) return;
+
+        saveBooking({
+            type: 'credit',
+            clientName: name,
+            clientPhone: phone,
+            carName: selectedCar.name,
+            creditTerm: creditTermSelect.value,
+            downPayment: downPaymentPercentVal.textContent,
+            monthlyPayment: monthlyPaymentVal.textContent,
+            carPrice: selectedCar.price
+        });
+
+        creditMessage.textContent = '✅ Заявка на автокредит успешно отправлена!';
+        creditMessage.className = 'form-message success';
+
+        setTimeout(() => {
+            creditModal.classList.remove('active');
+            creditCalcForm.reset();
+            creditMessage.textContent = '';
+        }, 1800);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initCreditModal);
