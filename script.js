@@ -1,3 +1,48 @@
+// === ПРИВЕТСТВЕННАЯ АНИМАЦИЯ (в начале файла, чтобы ошибки ниже её не ломали) ===
+(function introAnimation() {
+    const intro = document.getElementById('intro');
+    const finishAll = () => { window.introFinished = true; window.dispatchEvent(new Event('introDone')); };
+
+    if (!intro || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (intro) intro.remove();
+        document.body.classList.remove('loading');
+        finishAll();
+        return;
+    }
+
+    const road = document.getElementById('introRoad');
+    const car = document.getElementById('introCar');
+    const trail = document.getElementById('introTrail');
+    const speed = document.getElementById('introSpeed');
+    const DURATION = 2300;
+    const MAX_SPEED = 240;
+    let finished = false;
+
+    function finish() {
+        if (finished) return;
+        finished = true;
+        intro.classList.add('done');
+        setTimeout(() => { document.body.classList.remove('loading'); finishAll(); }, 450);
+        setTimeout(() => intro.remove(), 1500);
+    }
+
+    intro.addEventListener('click', finish); // клик — пропустить
+
+    const start = performance.now();
+    (function tick(now) {
+        if (finished) return;
+        const p = Math.min(1, (now - start) / DURATION);
+        const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; // разгон и торможение
+        const carW = car.offsetWidth;
+        const x = eased * (road.offsetWidth - carW);
+        car.style.left = x + 'px';
+        trail.style.width = (x + carW / 2) + 'px';
+        speed.textContent = Math.round(Math.sin(p * Math.PI) * MAX_SPEED);
+        if (p < 1) requestAnimationFrame(tick);
+        else setTimeout(finish, 250);
+    })(start);
+})();
+
 const cars = [
     {
         id: 1,
@@ -361,11 +406,15 @@ tradeInForm.addEventListener('submit', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     updateCarSlide(currentIndex);
 
-    setTimeout(() => {
+    // Текст на главной появляется после приветственной анимации
+    const revealHero = () => setTimeout(() => {
         document.querySelector('.hero-title').classList.add('visible');
         document.querySelector('.hero-subtitle').classList.add('visible');
         document.querySelector('.hero-btn').classList.add('visible');
     }, 200);
+
+    if (window.introFinished) revealHero();
+    else window.addEventListener('introDone', revealHero);
 
     console.log('%cПанель менеджера:%c Для вызова введите %cmanager(123123)%c в консоли.', 
         'color: #aaa;', 'color: #fff;', 'color: #ff4757; font-weight: bold;', 'color: #fff;');

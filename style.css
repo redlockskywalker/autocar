@@ -1106,3 +1106,158 @@ body {
 .promotions-list::-webkit-scrollbar-thumb:hover {
     background: #ff4757;
 }
+
+/* ===== Приветственная анимация ===== */
+body.loading { overflow: hidden; }
+
+.intro {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* страховка: если скрипт не отработал, оверлей уберётся сам */
+    animation: introFailsafe 0s linear 8s forwards;
+}
+@keyframes introFailsafe { to { visibility: hidden; pointer-events: none; } }
+
+.intro-panel {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50.5%;
+    background: #0f0f11;
+    transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.intro-panel.top { top: 0; }
+.intro-panel.bottom { bottom: 0; }
+.intro-panel::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff4757, #ff6b81, #ff4757, transparent);
+    box-shadow: 0 0 18px #ff4757;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.1s;
+}
+.intro-panel.top::after { bottom: 0; }
+.intro-panel.bottom::after { top: 0; }
+.intro.done .intro-panel::after { opacity: 1; }
+.intro.done .intro-panel.top { transform: translateY(-100%); }
+.intro.done .intro-panel.bottom { transform: translateY(100%); }
+
+.intro-center {
+    position: relative;
+    z-index: 2;
+    width: min(440px, 84vw);
+    text-align: center;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.intro-center::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 520px;
+    height: 320px;
+    max-width: 120vw;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(255, 71, 87, 0.16) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+.intro.done .intro-center { opacity: 0; transform: scale(1.08); }
+
+.intro-logo {
+    display: flex;
+    justify-content: center;
+    font-size: clamp(1.8rem, 7.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: #fff;
+}
+.intro-logo span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: introLetterUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: calc(var(--i) * 0.06s + 0.15s);
+}
+.intro-logo .accent {
+    background: linear-gradient(45deg, #ff4757, #ff6b81);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@keyframes introLetterUp { to { opacity: 1; transform: translateY(0); } }
+
+.intro-tag {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: introLetterUp 0.7s ease 0.95s forwards;
+}
+
+/* Дорога с едущей машиной */
+.intro-road {
+    position: relative;
+    height: 44px;
+    margin: 34px 0 14px;
+}
+.intro-road-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+.intro-road-line i {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #e84118, #ff4757, #ff6b81);
+    box-shadow: 0 0 12px #ff4757;
+}
+.intro-car {
+    position: absolute;
+    left: 0;
+    bottom: 3px;
+    width: 84px;
+    animation: introBounce 0.18s ease-in-out infinite alternate;
+}
+.intro-car svg { display: block; width: 100%; overflow: visible; }
+.intro-wheel {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: introSpin 0.45s linear infinite;
+}
+@keyframes introSpin { to { transform: rotate(360deg); } }
+@keyframes introBounce { from { transform: translateY(0); } to { transform: translateY(-1.2px); } }
+
+.intro-speed {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 6px;
+    font-variant-numeric: tabular-nums;
+}
+.intro-speed b { min-width: 3ch; text-align: right; font-size: 1.6rem; font-weight: 800; color: #fff; }
+.intro-speed small { font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; color: #ff4757; }
+
+/* Появление шапки после интро */
+.header { transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s, opacity 0.8s ease 0.2s; }
+body.loading .header { transform: translateY(-100%); opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+    .intro, .intro * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
