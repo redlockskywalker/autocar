@@ -43,6 +43,34 @@
     })(start);
 })();
 
+// === ВЫБОР ТЕМЫ (тёмная / светлая) ===
+(function themeSwitcher() {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const buttons = document.querySelectorAll('.theme-switch [data-theme-value]');
+
+    function apply(theme) {
+        root.setAttribute('data-theme', theme);
+        buttons.forEach(btn => {
+            const active = btn.dataset.themeValue === theme;
+            btn.classList.toggle('active', active);
+            btn.setAttribute('aria-pressed', String(active));
+        });
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem(KEY); } catch (e) {}
+    apply(saved === 'light' ? 'light' : 'dark');
+
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+        const theme = btn.dataset.themeValue;
+        root.classList.add('theme-anim');
+        apply(theme);
+        try { localStorage.setItem(KEY, theme); } catch (e) {}
+        setTimeout(() => root.classList.remove('theme-anim'), 450);
+    }));
+})();
+
 const cars = [
     {
         id: 1,
@@ -160,7 +188,7 @@ function renderManagerTable() {
     const bookings = getBookings();
 
     if (bookings.length === 0) {
-        managerTableContainer.innerHTML = '<p style="color: #888; text-align: center; padding: 20px;">Заявок пока нет.</p>';
+        managerTableContainer.innerHTML = '<p style="color: var(--muted-2); text-align: center; padding: 20px;">Заявок пока нет.</p>';
         return;
     }
 
@@ -182,7 +210,7 @@ function renderManagerTable() {
             html += `
                 <tr>
                     <td><span style="color:#ff4757; font-weight:bold;">Trade-In</span></td>
-                    <td>${b.clientName}<br><small style="color:#aaa;">${b.clientPhone}</small></td>
+                    <td>${b.clientName}<br><small style="color:var(--muted);">${b.clientPhone}</small></td>
                     <td>Оценка: <strong>${b.tradeInPrice}</strong></td>
                     <td><button class="btn btn-secondary" style="padding: 6px 12px; margin: 0; font-size: 0.85rem;" onclick="viewTradeIn(${b.id})">Смотреть фото</button></td>
                 </tr>
@@ -190,17 +218,27 @@ function renderManagerTable() {
         } else if (b.type === 'credit') {
             html += `
                 <tr>
-                    <td><span style="color:#70a1ff; font-weight:bold;">АвтоКредит</span></td>
-                    <td>${b.clientName}<br><small style="color:#aaa;">${b.clientPhone}</small></td>
-                    <td><strong>${b.carName}</strong> (${b.creditTerm || 36} мес., Взнос: ${b.downPayment || '20%'})<br><small style="color:#2ed573;">Платеж: ${b.monthlyPayment || ''}</small></td>
+                    <td><span style="color:var(--blue); font-weight:bold;">АвтоКредит</span></td>
+                    <td>${b.clientName}<br><small style="color:var(--muted);">${b.clientPhone}</small></td>
+                    <td><strong>${b.carName}</strong> (${b.creditTerm || 36} мес., Взнос: ${b.downPayment || '20%'})<br><small style="color:var(--green);">Платеж: ${b.monthlyPayment || ''}</small></td>
                     <td><a href="tel:${b.clientPhone}" class="btn" style="padding: 6px 12px; margin: 0; font-size: 0.85rem; text-decoration: none; display: inline-block;">📞 Позвонить</a></td>
+                </tr>
+            `;
+        } else if (b.type === 'diller') {
+            // Добавили отдельную обработку для дилерства (сотрудничества)
+            html += `
+                <tr>
+                    <td><span style="color:var(--green); font-weight:bold;">Сотрудничество</span></td>
+                    <td>${b.clientName}<br><small style="color:var(--muted);">${b.clientPhone}</small></td>
+                    <td>${b.carName}</td>
+                    <td><a href="tel:${b.clientPhone.split('|')[0].trim()}" class="btn btn-secondary" style="padding: 6px 12px; margin: 0; font-size: 0.85rem; text-decoration: none; display: inline-block;">📞 Позвонить</a></td>
                 </tr>
             `;
         } else {
             html += `
                 <tr>
-                    <td><span style="color:#2ed573; font-weight:bold;">Покупка</span></td>
-                    <td>${b.clientName}<br><small style="color:#aaa;">${b.clientPhone}</small></td>
+                    <td><span style="color:var(--green); font-weight:bold;">Покупка</span></td>
+                    <td>${b.clientName}<br><small style="color:var(--muted);">${b.clientPhone}</small></td>
                     <td>${b.carName} (Тест-драйв: ${b.testDrive ? 'Да' : 'Нет'})</td>
                     <td><a href="tel:${b.clientPhone}" class="btn btn-secondary" style="padding: 6px 12px; margin: 0; font-size: 0.85rem; text-decoration: none; display: inline-block;">📞 Позвонить</a></td>
                 </tr>
@@ -400,7 +438,7 @@ tradeInForm.addEventListener('submit', (e) => {
     addChatMessage('user', `Отправлено: ${clientName}, ${clientPhone}`);
     addChatMessage('bot', `✅ Заявка успешно принята! Наш менеджер скоро свяжется с вами.`);
     
-    tradeInForm.innerHTML = '<p style="color: #2ed573; text-align: center; margin-top: 10px;">Заявка передана менеджеру.</p>';
+    tradeInForm.innerHTML = '<p style="color: var(--green); text-align: center; margin-top: 10px;">Заявка передана менеджеру.</p>';
 });
 
 document.addEventListener('DOMContentLoaded', () => {

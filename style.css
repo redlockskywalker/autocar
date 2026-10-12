@@ -1,3 +1,130 @@
+/* ===== Темы оформления ===== */
+:root {
+    color-scheme: dark;
+    --bg: #0f0f11;
+    --bg-2: #141417;
+    --surface: #1c1c21;
+    --footer-bg: #09090b;
+    --img-bg: #0b0b0d;
+
+    --text: #f4f7f6;
+    --heading: #ffffff;
+    --text-2: #dddddd;
+    --text-3: #cccccc;
+    --muted: #aaaaaa;
+    --muted-2: #888888;
+
+    --green: #2ed573;
+    --warn: #ffaa00;
+    --blue: #70a1ff;
+
+    --border: rgba(255, 255, 255, 0.1);
+    --border-med: rgba(255, 255, 255, 0.08);
+    --border-soft: rgba(255, 255, 255, 0.05);
+    --border-strong: rgba(255, 255, 255, 0.3);
+    --tint: rgba(255, 255, 255, 0.03);
+
+    --header-bg: rgba(15, 15, 17, 0.9);
+    --overlay: rgba(0, 0, 0, 0.8);
+    --hero-overlay: radial-gradient(circle, rgba(15,15,17,0.4) 0%, rgba(15,15,17,0.95) 100%);
+
+    --btn2-bg: #2f3542;
+    --btn2-hover: #57606f;
+    --btn2-text: #ffffff;
+    --slider-bg: rgba(255, 255, 255, 0.1);
+    --slider-color: #ffffff;
+    --scroll-thumb: #2f3542;
+
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #f5f7fb;
+    --bg-2: #eaeef5;
+    --surface: #ffffff;
+    --footer-bg: #e1e6ef;
+    --img-bg: #dfe4ec;
+
+    --text: #1a1d24;
+    --heading: #11141a;
+    --text-2: #2b303b;
+    --text-3: #3a404d;
+    --muted: #5b6270;
+    --muted-2: #6b7280;
+
+    --green: #12924d;
+    --warn: #b96a00;
+    --blue: #2563eb;
+
+    --border: rgba(20, 28, 45, 0.14);
+    --border-med: rgba(20, 28, 45, 0.11);
+    --border-soft: rgba(20, 28, 45, 0.08);
+    --border-strong: rgba(20, 28, 45, 0.35);
+    --tint: rgba(20, 28, 45, 0.04);
+
+    --header-bg: rgba(255, 255, 255, 0.88);
+    --overlay: rgba(20, 28, 45, 0.55);
+    --hero-overlay: radial-gradient(circle, rgba(245,247,251,0.55) 0%, rgba(245,247,251,0.96) 100%);
+
+    --btn2-bg: #e0e5ee;
+    --btn2-hover: #cfd6e2;
+    --btn2-text: #1a1d24;
+    --slider-bg: rgba(255, 255, 255, 0.92);
+    --slider-color: #11141a;
+    --scroll-thumb: #b9c1d0;
+
+    --shadow-md: 0 10px 30px rgba(30, 40, 70, 0.12);
+    --shadow-lg: 0 20px 40px rgba(30, 40, 70, 0.16);
+    --shadow-xl: 0 25px 50px rgba(30, 40, 70, 0.25);
+}
+
+/* плавная смена темы (класс ставится скриптом на 0.45 с) */
+.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+/* Переключатель тем в шапке */
+.nav { display: flex; align-items: center; }
+
+.theme-switch {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: 25px;
+    padding: 3px;
+    border-radius: 999px;
+    background: var(--tint);
+    border: 1px solid var(--border);
+}
+
+.theme-switch button {
+    width: 34px;
+    height: 28px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.95rem;
+    line-height: 1;
+    opacity: 0.55;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.theme-switch button:hover { opacity: 0.9; }
+
+.theme-switch button.active {
+    opacity: 1;
+    background: linear-gradient(135deg, #ff4757, #e84118);
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
+}
+
+.theme-switch button:focus-visible {
+    outline: 2px solid #ff4757;
+    outline-offset: 2px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,8 +133,8 @@
 }
 
 body {
-    background-color: #0f0f11;
-    color: #f4f7f6;
+    background-color: var(--bg);
+    color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -20,16 +147,16 @@ body {
 }
 
 .header {
-    background: rgba(15, 15, 17, 0.9);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
-    color: #fff;
+    color: var(--heading);
     padding: 15px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
 }
 
 .header-container {
@@ -49,7 +176,7 @@ body {
 }
 
 .nav a {
-    color: #ccc;
+    color: var(--text-3);
     text-decoration: none;
     margin-left: 25px;
     font-weight: 500;
@@ -82,13 +209,14 @@ body {
 }
 
 .btn-secondary {
-    background: #2f3542;
+    color: var(--btn2-text);
+    background: var(--btn2-bg);
     box-shadow: none;
     margin-top: 15px;
 }
 
 .btn-secondary:hover {
-    background: #57606f;
+    background: var(--btn2-hover);
     box-shadow: none;
 }
 
@@ -109,7 +237,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(15,15,17,0.4) 0%, rgba(15,15,17,0.95) 100%);
+    background: var(--hero-overlay);
 }
 
 .hero-content {
@@ -138,7 +266,7 @@ body {
 
 .hero-subtitle {
     font-size: 1.3rem;
-    color: #ddd;
+    color: var(--text-2);
     margin-bottom: 35px;
     font-weight: 300;
 }
@@ -149,7 +277,7 @@ body {
 
 .catalog-section {
     padding: 100px 0 60px;
-    background: #141417;
+    background: var(--bg-2);
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -164,7 +292,7 @@ body {
     text-align: center;
     margin-bottom: 50px;
     font-size: 2.2rem;
-    color: #fff;
+    color: var(--heading);
     font-weight: 700;
 }
 
@@ -178,14 +306,14 @@ body {
 }
 
 .car-slide-card {
-    background: #1c1c21;
+    background: var(--surface);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow-lg);
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
     opacity: 1;
     transform: translateY(0) scale(1);
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -201,7 +329,7 @@ body {
     height: 380px;
     position: relative;
     overflow: hidden;
-    background-color: #0b0b0d;
+    background-color: var(--img-bg);
 }
 
 .car-image-wrapper img {
@@ -226,21 +354,21 @@ body {
 .car-details h3 {
     font-size: 1.8rem;
     margin-bottom: 12px;
-    color: #fff;
+    color: var(--heading);
 }
 
 .car-desc {
-    color: #aaa;
+    color: var(--muted);
     font-size: 0.95rem;
     margin-bottom: 25px;
 }
 
 .car-specs {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--tint);
     padding: 18px;
     border-radius: 10px;
     margin-bottom: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
 }
 
 .spec-item {
@@ -248,15 +376,15 @@ body {
     justify-content: space-between;
     padding: 6px 0;
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--border-soft);
 }
 
 .spec-item:last-child {
     border-bottom: none;
 }
 
-.spec-item span { color: #888; }
-.spec-item strong { color: #ddd; }
+.spec-item span { color: var(--muted-2); }
+.spec-item strong { color: var(--text-2); }
 
 .car-price-row {
     display: flex;
@@ -272,9 +400,9 @@ body {
 }
 
 .slider-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--slider-bg);
+    color: var(--slider-color);
+    border: 1px solid var(--border);
     font-size: 1.4rem;
     width: 50px;
     height: 50px;
@@ -292,6 +420,7 @@ body {
 }
 
 .slider-btn:hover {
+    color: var(--heading);
     background: #ff4757;
     border-color: #ff4757;
     transform: translateY(-50%) scale(1.1);
@@ -306,7 +435,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: var(--overlay);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -323,7 +452,7 @@ body {
 }
 
 .modal-content {
-    background: #1c1c21;
+    background: var(--surface);
     padding: 35px;
     border-radius: 16px;
     width: 90%;
@@ -331,8 +460,8 @@ body {
     max-height: 90vh; /* Не дает окну выходить за пределы экрана */
     overflow-y: auto;  /* Добавляет красивую прокрутку при необходимости */
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-xl);
     transform: translateY(-30px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -351,13 +480,13 @@ body {
     right: 20px;
     background: none;
     border: none;
-    color: #888;
+    color: var(--muted-2);
     font-size: 1.8rem;
     cursor: pointer;
     transition: color 0.2s;
 }
 
-.modal-close:hover { color: #fff; }
+.modal-close:hover { color: var(--heading); }
 
 .modal-title {
     font-size: 1.6rem;
@@ -386,7 +515,7 @@ body {
 
 .form-group label {
     font-size: 0.9rem;
-    color: #aaa;
+    color: var(--muted);
 }
 
 .form-group input[type="text"],
@@ -395,11 +524,11 @@ body {
 .custom-select,
 .trade-in-form input[type="text"],
 .trade-in-form input[type="tel"] {
-    background: #141417;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
     padding: 12px 15px;
     border-radius: 8px;
-    color: #fff;
+    color: var(--heading);
     font-size: 0.95rem;
     outline: none;
     width: 100%;
@@ -424,7 +553,7 @@ body {
     gap: 10px;
     cursor: pointer;
     font-size: 0.95rem;
-    color: #ddd;
+    color: var(--text-2);
     user-select: none;
 }
 
@@ -433,9 +562,9 @@ body {
 .custom-checkbox {
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid var(--border-strong);
     border-radius: 5px;
-    background: #141417;
+    background: var(--bg-2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -457,7 +586,7 @@ body {
 .contacts-info p {
     margin-bottom: 15px;
     font-size: 1.05rem;
-    color: #ddd;
+    color: var(--text-2);
 }
 
 .manager-table-wrapper {
@@ -475,32 +604,32 @@ body {
 
 .manager-table th, .manager-table td {
     padding: 12px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--border);
 }
 
 .manager-table th {
-    background: #141417;
+    background: var(--bg-2);
     color: #ff4757;
 }
 
 .manager-table td {
-    color: #ccc;
+    color: var(--text-3);
 }
 
-.badge-yes { color: #2ed573; font-weight: bold; }
+.badge-yes { color: var(--green); font-weight: bold; }
 .badge-no { color: #ff4757; }
 
 .submit-btn { width: 100%; margin-top: 10px; }
 .form-message { margin-top: 15px; font-size: 0.95rem; text-align: center; }
-.form-message.success { color: #2ed573; }
+.form-message.success { color: var(--green); }
 
 .footer {
-    background: #09090b;
-    color: #666;
+    background: var(--footer-bg);
+    color: var(--muted-2);
     text-align: center;
     padding: 30px 0;
     font-size: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-soft);
 }
 
 .managers-grid {
@@ -511,11 +640,11 @@ body {
 }
 
 .manager-card {
-    background: #1c1c21;
+    background: var(--surface);
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-md);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex; 
     align-items: center; 
@@ -545,7 +674,7 @@ body {
 
 .manager-info h3 {
     font-size: 1.5rem;
-    color: #fff;
+    color: var(--heading);
     margin-bottom: 5px;
 }
 
@@ -557,12 +686,12 @@ body {
 }
 
 .manager-info p {
-    color: #aaa;
+    color: var(--muted);
     font-size: 0.95rem;
     margin-bottom: 8px;
 }
 
-.manager-info strong { color: #ddd; }
+.manager-info strong { color: var(--text-2); }
 
 .trade-in-fab {
     position: fixed;
@@ -604,10 +733,10 @@ body {
     bottom: 90px;
     right: 30px;
     width: 350px;
-    background: #1c1c21;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    box-shadow: var(--shadow-xl);
     z-index: 1500;
     display: flex;
     flex-direction: column;
@@ -641,12 +770,14 @@ body {
 }
 
 .msg.bot {
-    background: #2f3542;
+    color: var(--text);
+    background: var(--btn2-bg);
     align-self: flex-start;
     border-bottom-left-radius: 2px;
 }
 
 .msg.user {
+    color: #fff;
     background: #ff4757;
     align-self: flex-end;
     border-bottom-right-radius: 2px;
@@ -656,12 +787,12 @@ body {
     max-width: 100%;
     border-radius: 8px;
     margin-top: 5px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid var(--border);
 }
 
 .chat-input-area {
     padding: 15px;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid var(--border-soft);
 }
 
 .trade-in-form {
@@ -708,10 +839,10 @@ body {
 }
 
 .promo-card, .review-card {
-    background: #141417;
+    background: var(--bg-2);
     padding: 18px;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-med);
 }
 
 .promo-card h4 {
@@ -721,26 +852,26 @@ body {
 }
 
 .promo-card p, .review-card p {
-    color: #ccc;
+    color: var(--text-3);
     font-size: 0.95rem;
 }
 
 .diller-rules {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--tint);
     padding: 15px;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
 }
 
 .diller-rules h4 {
-    color: #fff;
+    color: var(--heading);
     margin-bottom: 10px;
     font-size: 1rem;
 }
 
 .diller-rules ul {
     padding-left: 20px;
-    color: #aaa;
+    color: var(--muted);
     font-size: 0.9rem;
 }
 
@@ -756,7 +887,7 @@ body {
 }
 
 .review-header strong {
-    color: #fff;
+    color: var(--heading);
 }
 
 .stars {
@@ -766,8 +897,8 @@ body {
 /* Улучшенные стили для Акций и Дилерства */
 .promo-card {
     position: relative;
-    background: #1c1c21;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--surface);
+    border: 1px solid var(--border-med);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 15px;
@@ -793,18 +924,18 @@ body {
 
 .promo-badge-alt {
     background: rgba(46, 213, 115, 0.15);
-    color: #2ed573;
+    color: var(--green);
     border-color: rgba(46, 213, 115, 0.3);
 }
 
 .promo-content h4 {
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--heading);
     margin-bottom: 8px;
 }
 
 .promo-content p {
-    color: #aaa;
+    color: var(--muted);
     font-size: 0.95rem;
     margin-bottom: 15px;
 }
@@ -813,14 +944,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-soft);
     padding-top: 12px;
     margin-top: 10px;
 }
 
 .promo-date {
     font-size: 0.85rem;
-    color: #ffaa00;
+    color: var(--warn);
 }
 
 .btn-sm {
@@ -837,13 +968,13 @@ body {
 }
 
 .benefit-item {
-    background: #141417;
+    background: var(--bg-2);
     padding: 15px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
 }
 
 .benefit-icon {
@@ -852,28 +983,28 @@ body {
 
 .benefit-item strong {
     display: block;
-    color: #fff;
+    color: var(--heading);
     font-size: 0.9rem;
 }
 
 .benefit-item p {
-    color: #888;
+    color: var(--muted-2);
     font-size: 0.8rem;
     margin: 0;
 }
 
 .custom-select {
-    background: #141417;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
     padding: 12px 15px;
     border-radius: 8px;
-    color: #fff;
+    color: var(--heading);
     font-size: 0.95rem;
     outline: none;
     width: 100%;
 }
 
-.custom-select focus {
+.custom-select:focus {
     border-color: #ff4757;
 }
 
@@ -889,8 +1020,8 @@ body {
 /* Улучшенные стили для Акций и Дилерства */
 .promo-card {
     position: relative;
-    background: #1c1c21;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--surface);
+    border: 1px solid var(--border-med);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 15px;
@@ -916,18 +1047,18 @@ body {
 
 .promo-badge-alt {
     background: rgba(46, 213, 115, 0.15);
-    color: #2ed573;
+    color: var(--green);
     border-color: rgba(46, 213, 115, 0.3);
 }
 
 .promo-content h4 {
     font-size: 1.2rem;
-    color: #fff;
+    color: var(--heading);
     margin-bottom: 8px;
 }
 
 .promo-content p {
-    color: #aaa;
+    color: var(--muted);
     font-size: 0.95rem;
     margin-bottom: 15px;
 }
@@ -936,14 +1067,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-soft);
     padding-top: 12px;
     margin-top: 10px;
 }
 
 .promo-date {
     font-size: 0.85rem;
-    color: #ffaa00;
+    color: var(--warn);
 }
 
 .btn-sm {
@@ -960,13 +1091,13 @@ body {
 }
 
 .benefit-item {
-    background: #141417;
+    background: var(--bg-2);
     padding: 15px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
 }
 
 .benefit-icon {
@@ -975,28 +1106,28 @@ body {
 
 .benefit-item strong {
     display: block;
-    color: #fff;
+    color: var(--heading);
     font-size: 0.9rem;
 }
 
 .benefit-item p {
-    color: #888;
+    color: var(--muted-2);
     font-size: 0.8rem;
     margin: 0;
 }
 
 .custom-select {
-    background: #141417;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-2);
+    border: 1px solid var(--border);
     padding: 12px 15px;
     border-radius: 8px;
-    color: #fff;
+    color: var(--heading);
     font-size: 0.95rem;
     outline: none;
     width: 100%;
 }
 
-.custom-select focus {
+.custom-select:focus {
     border-color: #ff4757;
 }
 
@@ -1028,14 +1159,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #141417;
+    background: var(--bg-2);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #2f3542;
+    background: var(--scroll-thumb);
     border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -1044,11 +1175,11 @@ body {
 
 /* Стили для сетки автомобилей в акции */
 .promo-cars-section {
-    background: #141417;
+    background: var(--bg-2);
     padding: 15px;
     border-radius: 10px;
     margin: 15px 0;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-soft);
 }
 
 .promo-cars-grid {
@@ -1058,23 +1189,23 @@ body {
 }
 
 .promo-car-item {
-    background: #1c1c21;
+    background: var(--surface);
     padding: 10px 12px;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-med);
 }
 
 .car-tag-name {
-    color: #ddd;
+    color: var(--text-2);
     font-size: 0.9rem;
     font-weight: 500;
 }
 
 .car-tag-rate {
-    color: #2ed573;
+    color: var(--green);
     background: rgba(46, 213, 115, 0.15);
     padding: 2px 8px;
     border-radius: 12px;
@@ -1094,12 +1225,12 @@ body {
 }
 
 .promotions-list::-webkit-scrollbar-track {
-    background: #141417;
+    background: var(--bg-2);
     border-radius: 4px;
 }
 
 .promotions-list::-webkit-scrollbar-thumb {
-    background: #2f3542;
+    background: var(--scroll-thumb);
     border-radius: 4px;
 }
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Автосалон "АвтоПремиум"</title>
+    <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")==="light"?"light":"dark")}catch(e){}</script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="loading">
@@ -56,6 +57,10 @@
                 <a href="#diller" id="openDillerBtn">Стать дилером</a>
                 <a href="#managers" id="openSupportBtn">Поддержка</a>
                 <a href="#" id="openContactsBtn">📍 Контакты</a>
+                <div class="theme-switch" role="group" aria-label="Тема оформления">
+                    <button type="button" data-theme-value="dark" title="Тёмная тема" aria-label="Тёмная тема" aria-pressed="true">🌙</button>
+                    <button type="button" data-theme-value="light" title="Светлая тема" aria-label="Светлая тема" aria-pressed="false">☀️</button>
+                </div>
             </nav>
         </div>
     </header>
@@ -234,7 +239,7 @@
         <div class="modal-content modal-large">
             <button class="modal-close" id="closePromotionBtn">&times;</button>
             <h3 class="modal-title">🔥 Действующие акции и спецпредложения</h3>
-            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Зафиксируйте персональную выгоду до конца текущего месяца</p>
+            <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem;">Зафиксируйте персональную выгоду до конца текущего месяца</p>
             
             <div class="promotions-list">
                 <!-- Акция 1: Кредит и рассрочка -->
@@ -245,7 +250,7 @@
                         <p>Первоначальный взнос от 20%, одобрение по 2 документам за 15 минут без подтверждения доходов.</p>
                         
                         <div class="promo-cars-section">
-                            <h5 style="color: #fff; margin-bottom: 10px; font-size: 0.95rem;">🚗 Автомобили, участвующие в акции:</h5>
+                            <h5 style="color: var(--heading); margin-bottom: 10px; font-size: 0.95rem;">🚗 Автомобили, участвующие в акции:</h5>
                             <div class="promo-cars-grid">
                                 <div class="promo-car-item">
                                     <span class="car-tag-name">BMW X5 xDrive</span>
@@ -309,7 +314,7 @@
         <div class="modal-content modal-large">
             <button class="modal-close" id="closeDillerBtn">&times;</button>
             <h3 class="modal-title">🤝 Дилерская программа "АвтоПремиум"</h3>
-            <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Развивайте премиальный автобизнес на выгодных партнерских условиях.</p>
+            <p style="color: var(--muted); margin-bottom: 15px; font-size: 0.9rem;">Развивайте премиальный автобизнес на выгодных партнерских условиях.</p>
             
             <div class="diller-benefits-grid">
                 <div class="benefit-item">
@@ -414,7 +419,7 @@
     <div class="modal-content" style="max-width: 520px;">
         <button class="modal-close" id="closeCreditBtn">&times;</button>
         <h3 class="modal-title" style="color: #ff4757; text-align: center;">🚗 Расчет автокредита</h3>
-        <p style="color: #aaa; text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Выберите параметры кредитования и заполните заявку</p>
+        <p style="color: var(--muted); text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Выберите параметры кредитования и заполните заявку</p>
 
         <form id="creditCalcForm" class="booking-form">
             <div class="form-group">
@@ -426,7 +431,7 @@
                 <div class="form-group">
                     <label>Первоначальный взнос (%): <strong id="downPaymentPercentVal" style="color:#ff4757;">20%</strong></label>
                     <input type="range" id="downPaymentRange" min="10" max="80" value="20" step="5" style="width:100%; accent-color:#ff4757; cursor:pointer;">
-                    <small id="downPaymentAmountVal" style="color:#aaa;">0 ₸</small>
+                    <small id="downPaymentAmountVal" style="color:var(--muted);">0 ₸</small>
                 </div>
                 <div class="form-group">
                     <label>Срок кредита:</label>
@@ -442,14 +447,14 @@
             </div>
 
             <!-- Итоговые цифры расчета -->
-            <div style="background: #141417; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); margin: 5px 0 15px;">
+            <div style="background: var(--bg-2); padding: 15px; border-radius: 10px; border: 1px solid var(--border-med); margin: 5px 0 15px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color:#aaa; font-size:0.9rem;">Ежемесячный платеж:</span>
-                    <strong id="monthlyPaymentVal" style="font-size: 1.3rem; color: #2ed573;">0 ₸</strong>
+                    <span style="color:var(--muted); font-size:0.9rem;">Ежемесячный платеж:</span>
+                    <strong id="monthlyPaymentVal" style="font-size: 1.3rem; color: var(--green);">0 ₸</strong>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #888;">
-                    <span>Сумма кредита: <span id="loanAmountVal" style="color:#fff;">0 ₸</span></span>
-                    <span>Ставка: <span style="color:#2ed573;">0.1%</span></span>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted-2);">
+                    <span>Сумма кредита: <span id="loanAmountVal" style="color:var(--heading);">0 ₸</span></span>
+                    <span>Ставка: <span style="color:var(--green);">0.1%</span></span>
                 </div>
             </div>
 
