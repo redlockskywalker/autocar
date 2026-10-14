@@ -1,130 +1,3 @@
-/* ===== Темы оформления ===== */
-:root {
-    color-scheme: dark;
-    --bg: #0f0f11;
-    --bg-2: #141417;
-    --surface: #1c1c21;
-    --footer-bg: #09090b;
-    --img-bg: #0b0b0d;
-
-    --text: #f4f7f6;
-    --heading: #ffffff;
-    --text-2: #dddddd;
-    --text-3: #cccccc;
-    --muted: #aaaaaa;
-    --muted-2: #888888;
-
-    --green: #2ed573;
-    --warn: #ffaa00;
-    --blue: #70a1ff;
-
-    --border: rgba(255, 255, 255, 0.1);
-    --border-med: rgba(255, 255, 255, 0.08);
-    --border-soft: rgba(255, 255, 255, 0.05);
-    --border-strong: rgba(255, 255, 255, 0.3);
-    --tint: rgba(255, 255, 255, 0.03);
-
-    --header-bg: rgba(15, 15, 17, 0.9);
-    --overlay: rgba(0, 0, 0, 0.8);
-    --hero-overlay: radial-gradient(circle, rgba(15,15,17,0.4) 0%, rgba(15,15,17,0.95) 100%);
-
-    --btn2-bg: #2f3542;
-    --btn2-hover: #57606f;
-    --btn2-text: #ffffff;
-    --slider-bg: rgba(255, 255, 255, 0.1);
-    --slider-color: #ffffff;
-    --scroll-thumb: #2f3542;
-
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
-    --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.6);
-}
-
-:root[data-theme="light"] {
-    color-scheme: light;
-    --bg: #f5f7fb;
-    --bg-2: #eaeef5;
-    --surface: #ffffff;
-    --footer-bg: #e1e6ef;
-    --img-bg: #dfe4ec;
-
-    --text: #1a1d24;
-    --heading: #11141a;
-    --text-2: #2b303b;
-    --text-3: #3a404d;
-    --muted: #5b6270;
-    --muted-2: #6b7280;
-
-    --green: #12924d;
-    --warn: #b96a00;
-    --blue: #2563eb;
-
-    --border: rgba(20, 28, 45, 0.14);
-    --border-med: rgba(20, 28, 45, 0.11);
-    --border-soft: rgba(20, 28, 45, 0.08);
-    --border-strong: rgba(20, 28, 45, 0.35);
-    --tint: rgba(20, 28, 45, 0.04);
-
-    --header-bg: rgba(255, 255, 255, 0.88);
-    --overlay: rgba(20, 28, 45, 0.55);
-    --hero-overlay: radial-gradient(circle, rgba(245,247,251,0.55) 0%, rgba(245,247,251,0.96) 100%);
-
-    --btn2-bg: #e0e5ee;
-    --btn2-hover: #cfd6e2;
-    --btn2-text: #1a1d24;
-    --slider-bg: rgba(255, 255, 255, 0.92);
-    --slider-color: #11141a;
-    --scroll-thumb: #b9c1d0;
-
-    --shadow-md: 0 10px 30px rgba(30, 40, 70, 0.12);
-    --shadow-lg: 0 20px 40px rgba(30, 40, 70, 0.16);
-    --shadow-xl: 0 25px 50px rgba(30, 40, 70, 0.25);
-}
-
-/* плавная смена темы (класс ставится скриптом на 0.45 с) */
-.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after {
-    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease !important;
-}
-
-/* Переключатель тем в шапке */
-.nav { display: flex; align-items: center; }
-
-.theme-switch {
-    display: inline-flex;
-    gap: 2px;
-    margin-left: 25px;
-    padding: 3px;
-    border-radius: 999px;
-    background: var(--tint);
-    border: 1px solid var(--border);
-}
-
-.theme-switch button {
-    width: 34px;
-    height: 28px;
-    border: none;
-    border-radius: 999px;
-    background: transparent;
-    cursor: pointer;
-    font-size: 0.95rem;
-    line-height: 1;
-    opacity: 0.55;
-    transition: opacity 0.2s ease, background 0.2s ease;
-}
-
-.theme-switch button:hover { opacity: 0.9; }
-
-.theme-switch button.active {
-    opacity: 1;
-    background: linear-gradient(135deg, #ff4757, #e84118);
-    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4);
-}
-
-.theme-switch button:focus-visible {
-    outline: 2px solid #ff4757;
-    outline-offset: 2px;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -133,8 +6,8 @@
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: #0f0f11;
+    color: #f4f7f6;
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -147,16 +20,16 @@ body {
 }
 
 .header {
-    background: var(--header-bg);
+    background: rgba(15, 15, 17, 0.9);
     backdrop-filter: blur(10px);
-    color: var(--heading);
+    color: #fff;
     padding: 15px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 100;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header-container {
@@ -176,7 +49,7 @@ body {
 }
 
 .nav a {
-    color: var(--text-3);
+    color: #ccc;
     text-decoration: none;
     margin-left: 25px;
     font-weight: 500;
@@ -209,14 +82,13 @@ body {
 }
 
 .btn-secondary {
-    color: var(--btn2-text);
-    background: var(--btn2-bg);
+    background: #2f3542;
     box-shadow: none;
     margin-top: 15px;
 }
 
 .btn-secondary:hover {
-    background: var(--btn2-hover);
+    background: #57606f;
     box-shadow: none;
 }
 
@@ -237,7 +109,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--hero-overlay);
+    background: radial-gradient(circle, rgba(15,15,17,0.4) 0%, rgba(15,15,17,0.95) 100%);
 }
 
 .hero-content {
@@ -266,7 +138,7 @@ body {
 
 .hero-subtitle {
     font-size: 1.3rem;
-    color: var(--text-2);
+    color: #ddd;
     margin-bottom: 35px;
     font-weight: 300;
 }
@@ -277,7 +149,7 @@ body {
 
 .catalog-section {
     padding: 100px 0 60px;
-    background: var(--bg-2);
+    background: #141417;
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -292,7 +164,7 @@ body {
     text-align: center;
     margin-bottom: 50px;
     font-size: 2.2rem;
-    color: var(--heading);
+    color: #fff;
     font-weight: 700;
 }
 
@@ -306,14 +178,14 @@ body {
 }
 
 .car-slide-card {
-    background: var(--surface);
+    background: #1c1c21;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     width: 100%;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     opacity: 1;
     transform: translateY(0) scale(1);
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -329,7 +201,7 @@ body {
     height: 380px;
     position: relative;
     overflow: hidden;
-    background-color: var(--img-bg);
+    background-color: #0b0b0d;
 }
 
 .car-image-wrapper img {
@@ -354,21 +226,21 @@ body {
 .car-details h3 {
     font-size: 1.8rem;
     margin-bottom: 12px;
-    color: var(--heading);
+    color: #fff;
 }
 
 .car-desc {
-    color: var(--muted);
+    color: #aaa;
     font-size: 0.95rem;
     margin-bottom: 25px;
 }
 
 .car-specs {
-    background: var(--tint);
+    background: rgba(255, 255, 255, 0.03);
     padding: 18px;
     border-radius: 10px;
     margin-bottom: 25px;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .spec-item {
@@ -376,15 +248,15 @@ body {
     justify-content: space-between;
     padding: 6px 0;
     font-size: 0.9rem;
-    border-bottom: 1px solid var(--border-soft);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .spec-item:last-child {
     border-bottom: none;
 }
 
-.spec-item span { color: var(--muted-2); }
-.spec-item strong { color: var(--text-2); }
+.spec-item span { color: #888; }
+.spec-item strong { color: #ddd; }
 
 .car-price-row {
     display: flex;
@@ -400,9 +272,9 @@ body {
 }
 
 .slider-btn {
-    background: var(--slider-bg);
-    color: var(--slider-color);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 1.4rem;
     width: 50px;
     height: 50px;
@@ -420,7 +292,6 @@ body {
 }
 
 .slider-btn:hover {
-    color: var(--heading);
     background: #ff4757;
     border-color: #ff4757;
     transform: translateY(-50%) scale(1.1);
@@ -435,7 +306,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--overlay);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -452,7 +323,7 @@ body {
 }
 
 .modal-content {
-    background: var(--surface);
+    background: #1c1c21;
     padding: 35px;
     border-radius: 16px;
     width: 90%;
@@ -460,8 +331,8 @@ body {
     max-height: 90vh; /* Не дает окну выходить за пределы экрана */
     overflow-y: auto;  /* Добавляет красивую прокрутку при необходимости */
     position: relative;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
     transform: translateY(-30px);
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -480,13 +351,13 @@ body {
     right: 20px;
     background: none;
     border: none;
-    color: var(--muted-2);
+    color: #888;
     font-size: 1.8rem;
     cursor: pointer;
     transition: color 0.2s;
 }
 
-.modal-close:hover { color: var(--heading); }
+.modal-close:hover { color: #fff; }
 
 .modal-title {
     font-size: 1.6rem;
@@ -515,7 +386,7 @@ body {
 
 .form-group label {
     font-size: 0.9rem;
-    color: var(--muted);
+    color: #aaa;
 }
 
 .form-group input[type="text"],
@@ -524,11 +395,11 @@ body {
 .custom-select,
 .trade-in-form input[type="text"],
 .trade-in-form input[type="tel"] {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
+    background: #141417;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 15px;
     border-radius: 8px;
-    color: var(--heading);
+    color: #fff;
     font-size: 0.95rem;
     outline: none;
     width: 100%;
@@ -553,7 +424,7 @@ body {
     gap: 10px;
     cursor: pointer;
     font-size: 0.95rem;
-    color: var(--text-2);
+    color: #ddd;
     user-select: none;
 }
 
@@ -562,9 +433,9 @@ body {
 .custom-checkbox {
     width: 20px;
     height: 20px;
-    border: 2px solid var(--border-strong);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    background: var(--bg-2);
+    background: #141417;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -586,7 +457,7 @@ body {
 .contacts-info p {
     margin-bottom: 15px;
     font-size: 1.05rem;
-    color: var(--text-2);
+    color: #ddd;
 }
 
 .manager-table-wrapper {
@@ -604,32 +475,32 @@ body {
 
 .manager-table th, .manager-table td {
     padding: 12px 15px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .manager-table th {
-    background: var(--bg-2);
+    background: #141417;
     color: #ff4757;
 }
 
 .manager-table td {
-    color: var(--text-3);
+    color: #ccc;
 }
 
-.badge-yes { color: var(--green); font-weight: bold; }
+.badge-yes { color: #2ed573; font-weight: bold; }
 .badge-no { color: #ff4757; }
 
 .submit-btn { width: 100%; margin-top: 10px; }
 .form-message { margin-top: 15px; font-size: 0.95rem; text-align: center; }
-.form-message.success { color: var(--green); }
+.form-message.success { color: #2ed573; }
 
 .footer {
-    background: var(--footer-bg);
-    color: var(--muted-2);
+    background: #09090b;
+    color: #666;
     text-align: center;
     padding: 30px 0;
     font-size: 0.9rem;
-    border-top: 1px solid var(--border-soft);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .managers-grid {
@@ -640,11 +511,11 @@ body {
 }
 
 .manager-card {
-    background: var(--surface);
+    background: #1c1c21;
     border-radius: 16px;
     overflow: hidden;
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex; 
     align-items: center; 
@@ -674,7 +545,7 @@ body {
 
 .manager-info h3 {
     font-size: 1.5rem;
-    color: var(--heading);
+    color: #fff;
     margin-bottom: 5px;
 }
 
@@ -686,12 +557,12 @@ body {
 }
 
 .manager-info p {
-    color: var(--muted);
+    color: #aaa;
     font-size: 0.95rem;
     margin-bottom: 8px;
 }
 
-.manager-info strong { color: var(--text-2); }
+.manager-info strong { color: #ddd; }
 
 .trade-in-fab {
     position: fixed;
@@ -733,10 +604,10 @@ body {
     bottom: 90px;
     right: 30px;
     width: 350px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: #1c1c21;
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 16px;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
     z-index: 1500;
     display: flex;
     flex-direction: column;
@@ -770,14 +641,12 @@ body {
 }
 
 .msg.bot {
-    color: var(--text);
-    background: var(--btn2-bg);
+    background: #2f3542;
     align-self: flex-start;
     border-bottom-left-radius: 2px;
 }
 
 .msg.user {
-    color: #fff;
     background: #ff4757;
     align-self: flex-end;
     border-bottom-right-radius: 2px;
@@ -787,12 +656,12 @@ body {
     max-width: 100%;
     border-radius: 8px;
     margin-top: 5px;
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .chat-input-area {
     padding: 15px;
-    border-top: 1px solid var(--border-soft);
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 .trade-in-form {
@@ -839,10 +708,10 @@ body {
 }
 
 .promo-card, .review-card {
-    background: var(--bg-2);
+    background: #141417;
     padding: 18px;
     border-radius: 10px;
-    border: 1px solid var(--border-med);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .promo-card h4 {
@@ -852,26 +721,26 @@ body {
 }
 
 .promo-card p, .review-card p {
-    color: var(--text-3);
+    color: #ccc;
     font-size: 0.95rem;
 }
 
 .diller-rules {
-    background: var(--tint);
+    background: rgba(255, 255, 255, 0.03);
     padding: 15px;
     border-radius: 8px;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .diller-rules h4 {
-    color: var(--heading);
+    color: #fff;
     margin-bottom: 10px;
     font-size: 1rem;
 }
 
 .diller-rules ul {
     padding-left: 20px;
-    color: var(--muted);
+    color: #aaa;
     font-size: 0.9rem;
 }
 
@@ -887,7 +756,7 @@ body {
 }
 
 .review-header strong {
-    color: var(--heading);
+    color: #fff;
 }
 
 .stars {
@@ -897,8 +766,8 @@ body {
 /* Улучшенные стили для Акций и Дилерства */
 .promo-card {
     position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border-med);
+    background: #1c1c21;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 15px;
@@ -924,18 +793,18 @@ body {
 
 .promo-badge-alt {
     background: rgba(46, 213, 115, 0.15);
-    color: var(--green);
+    color: #2ed573;
     border-color: rgba(46, 213, 115, 0.3);
 }
 
 .promo-content h4 {
     font-size: 1.2rem;
-    color: var(--heading);
+    color: #fff;
     margin-bottom: 8px;
 }
 
 .promo-content p {
-    color: var(--muted);
+    color: #aaa;
     font-size: 0.95rem;
     margin-bottom: 15px;
 }
@@ -944,14 +813,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--border-soft);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: 12px;
     margin-top: 10px;
 }
 
 .promo-date {
     font-size: 0.85rem;
-    color: var(--warn);
+    color: #ffaa00;
 }
 
 .btn-sm {
@@ -968,13 +837,13 @@ body {
 }
 
 .benefit-item {
-    background: var(--bg-2);
+    background: #141417;
     padding: 15px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .benefit-icon {
@@ -983,28 +852,28 @@ body {
 
 .benefit-item strong {
     display: block;
-    color: var(--heading);
+    color: #fff;
     font-size: 0.9rem;
 }
 
 .benefit-item p {
-    color: var(--muted-2);
+    color: #888;
     font-size: 0.8rem;
     margin: 0;
 }
 
 .custom-select {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
+    background: #141417;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 15px;
     border-radius: 8px;
-    color: var(--heading);
+    color: #fff;
     font-size: 0.95rem;
     outline: none;
     width: 100%;
 }
 
-.custom-select:focus {
+.custom-select focus {
     border-color: #ff4757;
 }
 
@@ -1020,8 +889,8 @@ body {
 /* Улучшенные стили для Акций и Дилерства */
 .promo-card {
     position: relative;
-    background: var(--surface);
-    border: 1px solid var(--border-med);
+    background: #1c1c21;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 15px;
@@ -1047,18 +916,18 @@ body {
 
 .promo-badge-alt {
     background: rgba(46, 213, 115, 0.15);
-    color: var(--green);
+    color: #2ed573;
     border-color: rgba(46, 213, 115, 0.3);
 }
 
 .promo-content h4 {
     font-size: 1.2rem;
-    color: var(--heading);
+    color: #fff;
     margin-bottom: 8px;
 }
 
 .promo-content p {
-    color: var(--muted);
+    color: #aaa;
     font-size: 0.95rem;
     margin-bottom: 15px;
 }
@@ -1067,14 +936,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid var(--border-soft);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: 12px;
     margin-top: 10px;
 }
 
 .promo-date {
     font-size: 0.85rem;
-    color: var(--warn);
+    color: #ffaa00;
 }
 
 .btn-sm {
@@ -1091,13 +960,13 @@ body {
 }
 
 .benefit-item {
-    background: var(--bg-2);
+    background: #141417;
     padding: 15px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .benefit-icon {
@@ -1106,28 +975,28 @@ body {
 
 .benefit-item strong {
     display: block;
-    color: var(--heading);
+    color: #fff;
     font-size: 0.9rem;
 }
 
 .benefit-item p {
-    color: var(--muted-2);
+    color: #888;
     font-size: 0.8rem;
     margin: 0;
 }
 
 .custom-select {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
+    background: #141417;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 15px;
     border-radius: 8px;
-    color: var(--heading);
+    color: #fff;
     font-size: 0.95rem;
     outline: none;
     width: 100%;
 }
 
-.custom-select:focus {
+.custom-select focus {
     border-color: #ff4757;
 }
 
@@ -1159,14 +1028,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-2);
+    background: #141417;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--scroll-thumb);
+    background: #2f3542;
     border-radius: 4px;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -1175,11 +1044,11 @@ body {
 
 /* Стили для сетки автомобилей в акции */
 .promo-cars-section {
-    background: var(--bg-2);
+    background: #141417;
     padding: 15px;
     border-radius: 10px;
     margin: 15px 0;
-    border: 1px solid var(--border-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .promo-cars-grid {
@@ -1189,23 +1058,23 @@ body {
 }
 
 .promo-car-item {
-    background: var(--surface);
+    background: #1c1c21;
     padding: 10px 12px;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--border-med);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .car-tag-name {
-    color: var(--text-2);
+    color: #ddd;
     font-size: 0.9rem;
     font-weight: 500;
 }
 
 .car-tag-rate {
-    color: var(--green);
+    color: #2ed573;
     background: rgba(46, 213, 115, 0.15);
     padding: 2px 8px;
     border-radius: 12px;
@@ -1225,12 +1094,12 @@ body {
 }
 
 .promotions-list::-webkit-scrollbar-track {
-    background: var(--bg-2);
+    background: #141417;
     border-radius: 4px;
 }
 
 .promotions-list::-webkit-scrollbar-thumb {
-    background: var(--scroll-thumb);
+    background: #2f3542;
     border-radius: 4px;
 }
 
@@ -1302,6 +1171,23 @@ body.loading { overflow: hidden; }
     pointer-events: none;
 }
 .intro.done .intro-center { opacity: 0; transform: scale(1.08); }
+
+.intro-mark {
+    width: clamp(64px, 18vw, 92px);
+    margin: 0 auto 18px;
+    opacity: 0;
+    transform: translateY(-24px) scale(0.6);
+    filter: drop-shadow(0 0 0 rgba(255, 71, 87, 0));
+    animation:
+        introMarkIn 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.05s forwards,
+        introMarkGlow 1.8s ease-in-out 0.8s infinite alternate;
+}
+.intro-mark svg { display: block; width: 100%; height: auto; overflow: visible; }
+@keyframes introMarkIn { to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes introMarkGlow {
+    from { filter: drop-shadow(0 0 4px rgba(255, 71, 87, 0.25)); }
+    to   { filter: drop-shadow(0 0 16px rgba(255, 71, 87, 0.75)); }
+}
 
 .intro-logo {
     display: flex;
@@ -1391,4 +1277,19 @@ body.loading .header { transform: translateY(-100%); opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
     .intro, .intro * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.logo-wrapper:hover {
+    transform: scale(1.03);
+}
+
+.site-logo-svg {
+    max-width: 100%;
+    height: auto;
 }

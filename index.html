@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Автосалон "АвтоПремиум"</title>
-    <script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("theme")==="light"?"light":"dark")}catch(e){}</script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='favGradient' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff4757'/%3E%3Cstop offset='100%25' stop-color='%23ff6b81'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='32' cy='32' r='32' fill='%230f0f11'/%3E%3Cg transform='translate(10, 10) scale(1.1)'%3E%3Cpath d='M6 32L18 8L26 8L14 32H6Z' fill='url(%23favGradient)' opacity='0.4'/%3E%3Cpath d='M16 32L28 8H36L24 32H16Z' fill='url(%23favGradient)'/%3E%3Cpath d='M26 18L38 18L32 32H24L26 18Z' fill='%23FFFFFF'/%3E%3Cpath d='M4 36H38L42 40H0L4 36Z' fill='url(%23favGradient)' opacity='0.8'/%3E%3C/g%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="loading">
@@ -16,6 +16,22 @@
         <div class="intro-panel top"></div>
         <div class="intro-panel bottom"></div>
         <div class="intro-center">
+            <div class="intro-mark">
+                <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="introMarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ff4757"/>
+                            <stop offset="100%" stop-color="#ff6b81"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(1, 2)">
+                        <path d="M6 32L18 8L26 8L14 32H6Z" fill="url(#introMarkGrad)" opacity="0.4"/>
+                        <path d="M16 32L28 8H36L24 32H16Z" fill="url(#introMarkGrad)"/>
+                        <path d="M26 18L38 18L32 32H24L26 18Z" fill="#FFFFFF"/>
+                        <path d="M4 36H38L42 40H0L4 36Z" fill="url(#introMarkGrad)" opacity="0.8"/>
+                    </g>
+                </svg>
+            </div>
             <div class="intro-logo">
                 <span style="--i:0">А</span><span style="--i:1">В</span><span style="--i:2">Т</span><span style="--i:3">О</span><span class="accent" style="--i:4">П</span><span class="accent" style="--i:5">Р</span><span class="accent" style="--i:6">Е</span><span class="accent" style="--i:7">М</span><span class="accent" style="--i:8">И</span><span class="accent" style="--i:9">У</span><span class="accent" style="--i:10">М</span>
             </div>
@@ -49,18 +65,39 @@
 
     <header class="header">
         <div class="container header-container">
-            <h1 class="logo" id="logoBtn" style="cursor: pointer;">АвтоПремиум</h1>
+            <div class="logo-wrapper" id="logoBtn" style="cursor: pointer;">
+                <svg width="210" height="42" viewBox="0 0 220 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="site-logo-svg">
+                <defs>
+                    <linearGradient id="apBrandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ff4757" />
+                    <stop offset="100%" stop-color="#ff6b81" />
+                    </linearGradient>
+                    <filter id="apGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
+                <g transform="translate(4, 4)">
+                    <path d="M6 32L18 8L26 8L14 32H6Z" fill="url(#apBrandGradient)" opacity="0.4" />
+                    <path d="M16 32L28 8H36L24 32H16Z" fill="url(#apBrandGradient)" filter="url(#apGlow)" />
+                    <path d="M26 18L38 18L32 32H24L26 18Z" fill="#FFFFFF" />
+                    <path d="M4 36H38L42 40H0L4 36Z" fill="url(#apBrandGradient)" opacity="0.8" />
+                </g>
+                <text x="56" y="26" font-family="'Segoe UI', sans-serif" font-weight="800" font-size="20" letter-spacing="0.5" fill="#FFFFFF">
+                    АВТО<tspan fill="url(#apBrandGradient)">ПРЕМИУМ</tspan>
+                </text>
+                <text x="57" y="37" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="7.5" letter-spacing="2" fill="#aaaaaa">
+                    LUXURY CAR DEALERSHIP
+                </text>
+                </svg>
+            </div>
             <nav class="nav">
                 <a href="#catalog" id="navCatalogBtn">Модельный ряд</a>
                 <a href="#promotion" id="openPromotionBtn">Акции</a>
                 <a href="#rating" id="openRatingBtn">Отзывы</a>
                 <a href="#diller" id="openDillerBtn">Стать дилером</a>
                 <a href="#managers" id="openSupportBtn">Поддержка</a>
-                <a href="#" id="openContactsBtn">📍 Контакты</a>
-                <div class="theme-switch" role="group" aria-label="Тема оформления">
-                    <button type="button" data-theme-value="dark" title="Тёмная тема" aria-label="Тёмная тема" aria-pressed="true">🌙</button>
-                    <button type="button" data-theme-value="light" title="Светлая тема" aria-label="Светлая тема" aria-pressed="false">☀️</button>
-                </div>
+                <a href="#" id="openContactsBtn">Контакты</a>
             </nav>
         </div>
     </header>
@@ -239,7 +276,7 @@
         <div class="modal-content modal-large">
             <button class="modal-close" id="closePromotionBtn">&times;</button>
             <h3 class="modal-title">🔥 Действующие акции и спецпредложения</h3>
-            <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem;">Зафиксируйте персональную выгоду до конца текущего месяца</p>
+            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.95rem;">Зафиксируйте персональную выгоду до конца текущего месяца</p>
             
             <div class="promotions-list">
                 <!-- Акция 1: Кредит и рассрочка -->
@@ -250,7 +287,7 @@
                         <p>Первоначальный взнос от 20%, одобрение по 2 документам за 15 минут без подтверждения доходов.</p>
                         
                         <div class="promo-cars-section">
-                            <h5 style="color: var(--heading); margin-bottom: 10px; font-size: 0.95rem;">🚗 Автомобили, участвующие в акции:</h5>
+                            <h5 style="color: #fff; margin-bottom: 10px; font-size: 0.95rem;">🚗 Автомобили, участвующие в акции:</h5>
                             <div class="promo-cars-grid">
                                 <div class="promo-car-item">
                                     <span class="car-tag-name">BMW X5 xDrive</span>
@@ -314,7 +351,7 @@
         <div class="modal-content modal-large">
             <button class="modal-close" id="closeDillerBtn">&times;</button>
             <h3 class="modal-title">🤝 Дилерская программа "АвтоПремиум"</h3>
-            <p style="color: var(--muted); margin-bottom: 15px; font-size: 0.9rem;">Развивайте премиальный автобизнес на выгодных партнерских условиях.</p>
+            <p style="color: #aaa; margin-bottom: 15px; font-size: 0.9rem;">Развивайте премиальный автобизнес на выгодных партнерских условиях.</p>
             
             <div class="diller-benefits-grid">
                 <div class="benefit-item">
@@ -419,7 +456,7 @@
     <div class="modal-content" style="max-width: 520px;">
         <button class="modal-close" id="closeCreditBtn">&times;</button>
         <h3 class="modal-title" style="color: #ff4757; text-align: center;">🚗 Расчет автокредита</h3>
-        <p style="color: var(--muted); text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Выберите параметры кредитования и заполните заявку</p>
+        <p style="color: #aaa; text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Выберите параметры кредитования и заполните заявку</p>
 
         <form id="creditCalcForm" class="booking-form">
             <div class="form-group">
@@ -431,7 +468,7 @@
                 <div class="form-group">
                     <label>Первоначальный взнос (%): <strong id="downPaymentPercentVal" style="color:#ff4757;">20%</strong></label>
                     <input type="range" id="downPaymentRange" min="10" max="80" value="20" step="5" style="width:100%; accent-color:#ff4757; cursor:pointer;">
-                    <small id="downPaymentAmountVal" style="color:var(--muted);">0 ₸</small>
+                    <small id="downPaymentAmountVal" style="color:#aaa;">0 ₸</small>
                 </div>
                 <div class="form-group">
                     <label>Срок кредита:</label>
@@ -447,14 +484,14 @@
             </div>
 
             <!-- Итоговые цифры расчета -->
-            <div style="background: var(--bg-2); padding: 15px; border-radius: 10px; border: 1px solid var(--border-med); margin: 5px 0 15px;">
+            <div style="background: #141417; padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); margin: 5px 0 15px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span style="color:var(--muted); font-size:0.9rem;">Ежемесячный платеж:</span>
-                    <strong id="monthlyPaymentVal" style="font-size: 1.3rem; color: var(--green);">0 ₸</strong>
+                    <span style="color:#aaa; font-size:0.9rem;">Ежемесячный платеж:</span>
+                    <strong id="monthlyPaymentVal" style="font-size: 1.3rem; color: #2ed573;">0 ₸</strong>
                 </div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--muted-2);">
-                    <span>Сумма кредита: <span id="loanAmountVal" style="color:var(--heading);">0 ₸</span></span>
-                    <span>Ставка: <span style="color:var(--green);">0.1%</span></span>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #888;">
+                    <span>Сумма кредита: <span id="loanAmountVal" style="color:#fff;">0 ₸</span></span>
+                    <span>Ставка: <span style="color:#2ed573;">0.1%</span></span>
                 </div>
             </div>
 
