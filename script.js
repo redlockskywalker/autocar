@@ -86,13 +86,23 @@ const cars = [
     },
     {
         id: 5,
-        name: "Porsche Matiz",
-        description: "Кароль дорог.",
-        power: "1000 л.с.",
+        name: "Porsche Cayenne Sport",
+        description: "Настоящий спортивный характер в кузове мощного и престижного кроссовера.",
+        power: "440 л.с.",
+        time: "4.8 сек",
+        drive: "Полный (AWD)",
+        price: "115 000 000 ₸",
+        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        id: 6,
+        name: "Porovoz",
+        description: "Хочешь взрыв так вот оно.",
+        power: "10000 л.с.",
         time: "0.00001 сек",
         drive: "Полный (AWD)",
         price: "999 999 999 ₸",
-        image: "https://i.ibb.co.com/8gwvPdrH/Gemini-Generated-Image-u6qtmpu6qtmpu6qt.jpg"
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSnYPiZfjtKB-nm6hW5Zu8hhCVoy5XHtHIlnOUayT_6SOKAxJrW0gbV8w&s=10"
     }
 ];
 
