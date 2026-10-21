@@ -86,13 +86,13 @@ const cars = [
     },
     {
         id: 5,
-        name: "Porsche Cayenne Sport",
-        description: "Настоящий спортивный характер в кузове мощного и престижного кроссовера.",
+        name: "Нюша",
+        description: "Хрю Хрю.",
         power: "440 л.с.",
         time: "4.8 сек",
         drive: "Полный (AWD)",
-        price: "115 000 000 ₸",
-        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+        price: "Бесплатно",
+        image: "https://novate.ru/files/u31123/Ridiculou-Cars-2.jpg"
     },
     {
         id: 6,
