@@ -112,7 +112,7 @@ const cars = [
         time: "0.00001 сек",
         drive: "Полный (AWD)",
         price: "Много ₸",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSnYPiZfjtKB-nm6hW5Zu8hhCVoy5XHtHIlnOUayT_6SOKAxJrW0gbV8w&s=10"
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScR7We0onTUDksDaVZnfPB4Uo9CkH8E8hCKqA7Hp6e3r_m0aIWE3n0roma&s=10"
     }
 ];
 
