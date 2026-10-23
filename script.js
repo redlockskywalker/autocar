@@ -89,8 +89,8 @@ const cars = [
         name: "Нюша",
         description: "Хрю Хрю.",
         power: "0 л.с.",
-        time: "1000 сек",
-        drive: "Полный (AWD)",
+        time: "C толкача",
+        drive: "Харам",
         price: "Бесплатно",
         image: "https://novate.ru/files/u31123/Ridiculou-Cars-2.jpg"
     },
