@@ -88,8 +88,8 @@ const cars = [
         id: 5,
         name: "Нюша",
         description: "Хрю Хрю.",
-        power: "440 л.с.",
-        time: "4.8 сек",
+        power: "0 л.с.",
+        time: "1000 сек",
         drive: "Полный (AWD)",
         price: "Бесплатно",
         image: "https://novate.ru/files/u31123/Ridiculou-Cars-2.jpg"
@@ -102,6 +102,16 @@ const cars = [
         time: "0.00001 сек",
         drive: "Полный (AWD)",
         price: "999 999 999 ₸",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSnYPiZfjtKB-nm6hW5Zu8hhCVoy5XHtHIlnOUayT_6SOKAxJrW0gbV8w&s=10"
+    },
+    {
+        id: 7,
+        name: "Kefteme",
+        description: "Чеза тяги вархатные.",
+        power: "-1 л.с.",
+        time: "0.00001 сек",
+        drive: "Полный (AWD)",
+        price: "Много ₸",
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSnYPiZfjtKB-nm6hW5Zu8hhCVoy5XHtHIlnOUayT_6SOKAxJrW0gbV8w&s=10"
     }
 ];
